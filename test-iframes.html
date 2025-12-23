@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Iframes SaaS</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .iframe-test { border: 2px solid #ccc; margin: 10px 0; width: 100%; height: 400px; }
+        .status { padding: 10px; margin: 5px 0; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .warning { background: #fff3cd; color: #856404; border: 1px solid #ffeaa7; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    </style>
+</head>
+<body>
+    <h1>Test d'intégration des Iframes SaaS</h1>
+
+    <div id="status"></div>
+
+    <h2>1. App & Website Builder (aurion-app-v2.pages.dev)</h2>
+    <div class="status" id="status-app">Test en cours...</div>
+    <iframe src="https://aurion-app-v2.pages.dev" class="iframe-test" id="iframe-app"></iframe>
+
+    <h2>2. AI Agents (flo-1-2ba8.onrender.com)</h2>
+    <div class="status" id="status-agents">Test en cours...</div>
+    <iframe src="https://flo-1-2ba8.onrender.com" class="iframe-test" id="iframe-agents"></iframe>
+
+    <h2>3. Rich Text Editor (aieditor-*.vercel.app)</h2>
+    <div class="status" id="status-editor">Test en cours...</div>
+    <iframe src="https://aieditor-do0wmlcpa-ibagencys-projects.vercel.app" class="iframe-test" id="iframe-editor"></iframe>
+
+    <script>
+        const tools = [
+            { id: 'app', name: 'App Builder', url: 'https://aurion-app-v2.pages.dev' },
+            { id: 'agents', name: 'AI Agents', url: 'https://flo-1-2ba8.onrender.com' },
+            { id: 'editor', name: 'Rich Text Editor', url: 'https://aieditor-do0wmlcpa-ibagencys-projects.vercel.app' }
+        ];
+
+        function updateStatus(toolId, status, message, className = '') {
+            const element = document.getElementById(`status-${toolId}`);
+            element.textContent = message;
+            element.className = `status ${className}`;
+        }
+
+        function testIframe(tool) {
+            const iframe = document.getElementById(`iframe-${tool.id}`);
+
+            iframe.onload = function() {
+                updateStatus(tool.id, 'success', `✅ ${tool.name}: Chargé avec succès`, 'success');
+
+                // Tester l'accès au contentDocument (CORS check)
+                try {
+                    if (iframe.contentDocument) {
+                        updateStatus(tool.id, 'success', `✅ ${tool.name}: Accès document OK (pas de CORS)`, 'success');
+                    } else {
+                        updateStatus(tool.id, 'warning', `⚠️ ${tool.name}: Accès document bloqué (CORS)`, 'warning');
+                    }
+                } catch (e) {
+                    updateStatus(tool.id, 'warning', `⚠️ ${tool.name}: Erreur CORS - ${e.message}`, 'warning');
+                }
+            };
+
+            iframe.onerror = function() {
+                updateStatus(tool.id, 'error', `❌ ${tool.name}: Erreur de chargement`, 'error');
+            };
+
+            // Timeout après 10 secondes
+            setTimeout(() => {
+                if (iframe.contentDocument === null && !iframe.classList.contains('loaded')) {
+                    updateStatus(tool.id, 'error', `❌ ${tool.name}: Timeout (10s)`, 'error');
+                }
+            }, 10000);
+        }
+
+        // Tester tous les iframes
+        tools.forEach(tool => {
+            testIframe(tool);
+        });
+
+        // Test de communication postMessage
+        window.addEventListener('message', function(event) {
+            console.log('Message reçu depuis iframe:', event.data);
+            document.getElementById('status').innerHTML +=
+                `<div class="status success">📨 Message de ${event.origin}: ${JSON.stringify(event.data)}</div>`;
+        });
+    </script>
+</body>
+</html>

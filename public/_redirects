@@ -1,0 +1,9 @@
+# AURION - SPA Redirects for Cloudflare Pages
+# Handle client-side routing
+
+# API routes should pass through to Functions
+/api/*  /api/:splat  200
+
+# All other routes go to index.html for SPA
+/*  /index.html  200
+

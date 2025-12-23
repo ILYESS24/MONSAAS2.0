@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TEST FINAL NAVIGATION</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .btn { padding: 10px 20px; margin: 5px; background: #007bff; color: white; border: none; cursor: pointer; }
+        .btn:hover { background: #0056b3; }
+        .result { margin: 10px 0; padding: 10px; background: #f0f0f0; }
+    </style>
+</head>
+<body>
+    <h1>🧪 TEST FINAL - Navigation Outils AURION</h1>
+
+    <div id="results"></div>
+
+    <button class="btn" onclick="testNavigate('website-builder')">🚀 Créateur de Sites Web</button>
+    <button class="btn" onclick="testNavigate('app-builder')">🚀 Créateur d'Applications</button>
+    <button class="btn" onclick="testNavigate('content-generator')">🚀 Générateur de Contenu</button>
+    <button class="btn" onclick="testNavigate('ai-agents')">🚀 Agents IA</button>
+
+    <script>
+        // URLs exactes comme dans l'app
+        const TOOL_URLS = {
+          'app-builder': 'https://aurion-app-v2.pages.dev/',
+          'website-builder': 'https://790d4da4.ai-assistant-xlv.pages.dev',
+          'ai-agents': 'https://flo-1-2ba8.onrender.com',
+          'text-editor': 'https://aieditor-do0wmlcpa-ibagencys-projects.vercel.app',
+          'code-editor': 'https://790d4da4.ai-assistant-xlv.pages.dev',
+          'content-generator': 'https://790d4da4.ai-assistant-xlv.pages.dev',
+        };
+
+        function testNavigate(toolId) {
+            const results = document.getElementById('results');
+
+            // Log du test
+            const testDiv = document.createElement('div');
+            testDiv.className = 'result';
+            testDiv.innerHTML = `<strong>🧪 TEST: ${toolId}</strong><br>`;
+
+            const toolUrl = TOOL_URLS[toolId];
+            if (toolUrl) {
+                testDiv.innerHTML += `✅ URL trouvée: ${toolUrl}<br>`;
+                testDiv.innerHTML += `🔄 Redirection en cours...<br>`;
+
+                results.appendChild(testDiv);
+
+                // Attendre un peu pour voir le log
+                setTimeout(() => {
+                    console.log(`REDIRECTING ${toolId} to ${toolUrl}`);
+                    window.location.href = toolUrl;
+                }, 500);
+
+            } else {
+                testDiv.innerHTML += `❌ ERREUR: URL non trouvée pour ${toolId}`;
+                results.appendChild(testDiv);
+            }
+        }
+
+        // Log initial
+        console.log('📋 TOOL_URLS disponibles:', Object.keys(TOOL_URLS));
+        console.log('🔧 Test prêt - cliquez sur les boutons');
+    </script>
+</body>
+</html>
+
+

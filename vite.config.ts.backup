@@ -1,0 +1,162 @@
+import path from "node:path";
+import { defineConfig, Plugin, loadEnv } from "vite";
+import react from "@vitejs/plugin-react-swc";
+
+// Plugin personnalisé pour proxy Freepik en dev UNIQUEMENT
+function freepikProxyPlugin(): Plugin {
+  return {
+    name: 'freepik-proxy',
+    configureServer(server) {
+      server.middlewares.use('/api/generate-image', async (req, res) => {
+        if (req.method === 'OPTIONS') {
+          res.setHeader('Access-Control-Allow-Origin', '*');
+          res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+          res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+          res.statusCode = 204;
+          res.end();
+          return;
+        }
+
+        if (req.method === 'POST') {
+          // Charger les variables d'environnement via Vite
+          const env = loadEnv('development', process.cwd(), '');
+          const freepikKey = env.FREEPIK_API_KEY || env.VITE_FREEPIK_API_KEY;
+          
+          if (!freepikKey) {
+            res.statusCode = 500;
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({
+              error: 'Freepik API key not configured for development'
+            }));
+            return;
+          }
+
+          let body = '';
+          req.on('data', (chunk: Buffer) => { body += chunk.toString(); });
+          req.on('end', async () => {
+            try {
+              const response = await fetch('https://api.freepik.com/v1/ai/text-to-image', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json',
+                  'x-freepik-api-key': freepikKey,
+                },
+                body: body,
+              });
+
+              const data = await response.text();
+              res.setHeader('Content-Type', 'application/json');
+              res.setHeader('Access-Control-Allow-Origin', '*');
+              res.statusCode = response.status;
+              res.end(data);
+            } catch (error) {
+              const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+              res.statusCode = 500;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ error: errorMessage }));
+            }
+          });
+        }
+      });
+    },
+  };
+}
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  base: "/",
+  
+  // Optimisation des dépendances pour un démarrage rapide
+  optimizeDeps: {
+    entries: ["src/main.tsx"],
+    include: [
+      "react",
+      "react-dom",
+      "react-router-dom",
+      "framer-motion",
+      "@radix-ui/react-dialog",
+      "@radix-ui/react-dropdown-menu",
+      "@radix-ui/react-tooltip",
+      "lucide-react",
+      "clsx",
+      "tailwind-merge",
+      "zustand",
+      "@tanstack/react-query",
+      // Précharger les chunks critiques
+      "@clerk/clerk-react",
+      "@supabase/supabase-js",
+    ],
+    exclude: ['@paper-design/shaders-react'],
+  },
+  
+  // Configuration de build avec CSS non minifié pour debug
+  build: {
+    target: "esnext",
+    minify: "esbuild",
+    cssMinify: false, // Désactiver minification CSS pour éviter les problèmes
+    cssCodeSplit: true,
+    reportCompressedSize: true,
+    chunkSizeWarningLimit: 500,
+
+    rollupOptions: {
+      output: {
+        chunkFileNames: 'assets/chunk-[hash].js',
+        entryFileNames: 'assets/entry-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]',
+      },
+    },
+    sourcemap: false,
+  },
+  
+  plugins: [
+    // SWC pour une compilation ultra-rapide
+    react(),
+
+    // Proxy Freepik pour le développement local
+    freepikProxyPlugin(),
+
+    // PWA temporairement désactivé pour debug
+    // VitePWA({...})
+  ],
+  
+  resolve: {
+    preserveSymlinks: true,
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+      // Garantir une seule instance de React
+      react: path.resolve(__dirname, "./node_modules/react"),
+      "react-dom": path.resolve(__dirname, "./node_modules/react-dom"),
+    },
+  },
+  
+  server: {
+    // @ts-expect-error - allowedHosts accepts boolean in some Vite versions
+    allowedHosts: true,
+    hmr: {
+      overlay: true,
+    },
+  },
+  
+  // Prévisualisation production
+  preview: {
+    port: 4173,
+    strictPort: true,
+  },
+  
+  // Optimisations CSS avancées
+  css: {
+    devSourcemap: false,
+    postcss: './postcss.config.cjs',
+  },
+
+  // Variables d'environnement exposées
+  define: {
+    __APP_VERSION__: JSON.stringify('1.0.0'),
+  },
+
+  // Optimisations des assets
+  assetsInclude: ['**/*.gltf', '**/*.glb', '**/*.hdr'],
+
+  // Headers de sécurité et performance (server déjà défini plus haut)
+});
