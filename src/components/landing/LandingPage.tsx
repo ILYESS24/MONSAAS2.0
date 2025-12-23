@@ -7,6 +7,16 @@ import { Component } from "@/components/ui/animated-menu";
 import { ButtonGetStarted } from "@/components/ui/button-get-started";
 import { CreationMenu } from "@/components/ui/creation-menu";
 import { TOOL_URLS } from "@/types/plans";
+import { PromptInput } from "@/components/ui/prompt-input";
+import {
+  Code2,
+  Palette,
+  Bot,
+  FileText,
+  Settings,
+  Wrench,
+  ExternalLink
+} from "lucide-react";
 // Icons imported but not used in this component
 
 // Performance utilities
@@ -48,47 +58,18 @@ const useIntersectionObserver = (ref: React.RefObject<Element>, options: Interse
 // - Throttled scroll events at 60fps
 // - Static backgrounds for distant sections
 
-// Color schemes for each section
+// Color schemes for each section - ONLY FIRST SECTION
 const sectionColors = [
   ["hsl(14, 100%, 57%)", "hsl(45, 100%, 51%)", "hsl(340, 82%, 52%)"], // Orange/Yellow/Pink - AI Creation Platform
-  ["hsl(200, 100%, 50%)", "hsl(220, 90%, 56%)", "hsl(240, 80%, 60%)"], // Blue - AI Code Generation
-  ["hsl(220, 90%, 56%)", "hsl(280, 80%, 60%)", "hsl(200, 100%, 50%)"], // Blue/Purple - AI Tech Stack
-  ["hsl(190, 90%, 45%)", "hsl(210, 80%, 50%)", "hsl(170, 100%, 40%)"], // Cyan/Blue - App Builder
-  ["hsl(120, 80%, 45%)", "hsl(140, 70%, 50%)", "hsl(100, 90%, 40%)"], // Green - Website Builder
 ];
 
-// Section content - Value-first approach: explain what each tool does and why it matters
-// Each section focuses on real user needs and practical benefits
+// Section content - ONLY FIRST SECTION
 const sectionContent = [
   {
-    title: "Plateforme de Création IA",
-    subtitle: "Outils pour travailler plus efficacement",
-    description: "Créez du contenu, développez des applications et automatisez des tâches grâce à l'intelligence artificielle. Chaque outil résout un problème spécifique que vous rencontrez quotidiennement.",
+    title: "",
+    subtitle: "",
+    description: "",
     toolId: null, // Home section, no tool
-  },
-  {
-    title: "Création de Vidéos",
-    subtitle: "Transformez vos idées en vidéos",
-    description: "Vous avez besoin de vidéos pour votre entreprise, mais le montage prend trop de temps. Notre outil analyse votre contenu et crée automatiquement des vidéos professionnelles adaptées à votre audience.",
-    toolId: "content-generator",
-  },
-  {
-    title: "Agents IA",
-    subtitle: "Automatisez vos processus répétitifs",
-    description: "Vous répétez les mêmes tâches administratives chaque semaine. Configurez des agents IA qui s'en chargent automatiquement, vous laissant vous concentrer sur votre travail stratégique.",
-    toolId: "ai-agents",
-  },
-  {
-    title: "Créateur d'Applications",
-    subtitle: "Construisez des apps sans compétences techniques",
-    description: "Vous avez une idée d'application, mais l'embauche d'un développeur coûte cher. Décrivez votre besoin, et l'IA génère automatiquement le code et l'interface de votre application.",
-    toolId: "app-builder",
-  },
-  {
-    title: "Créateur de Sites Web",
-    subtitle: "Un site web professionnel en quelques minutes",
-    description: "Vous avez besoin d'un site web pour votre entreprise, mais les templates ne correspondent pas. Répondez à quelques questions, et l'IA crée un site unique adapté à votre activité.",
-    toolId: "website-builder",
   },
 ];
 
@@ -180,6 +161,24 @@ const Section = React.memo(function Section({ id, index, colors, content, isActi
               isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}>
               <Component>{content.description}</Component>
+            </div>
+          </div>
+
+          {/* Espace de Prompt Central */}
+          <div className="mb-6 md:mb-16 transition-all duration-700 delay-500 flex justify-center">
+            <div className="max-w-2xl w-full">
+              <PromptInput
+                placeholder="Décrivez votre projet..."
+                onSubmit={(prompt) => {
+                  console.log("Prompt submitted:", prompt);
+                }}
+                onToolsClick={() => {
+                  console.log("Tools clicked");
+                }}
+                onImportClick={() => {
+                  console.log("Import clicked");
+                }}
+              />
             </div>
           </div>
 
@@ -506,22 +505,57 @@ export default function LandingPage() {
           />
         </div>
 
-        {/* Navigation dots */}
-        <div className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-2 md:gap-3">
-          {sectionColors.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveSection(index)}
-              className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
-                index === activeSection
-                  ? "bg-white scale-125"
-                  : "bg-white/40 hover:bg-white/60"
-              }`}
-              aria-label={`Go to section ${index + 1}`}
-            />
-          ))}
+        {/* Header Navigation */}
+        <div className="absolute top-4 md:top-8 left-1/2 transform -translate-x-1/2 z-50 flex items-center justify-center w-full max-w-screen-xl px-4">
+          <div className="flex items-center space-x-3 md:space-x-6 text-white text-xs md:text-sm font-medium">
+            <a href="#enterprise" className="hover:text-white/80 transition-colors duration-200">Enterprise</a>
+            <a href="#careers" className="hover:text-white/80 transition-colors duration-200">Careers</a>
+          </div>
+          <div className="flex-grow"></div>
+          <div className="flex items-center space-x-3 md:space-x-6 text-white text-xs md:text-sm font-medium">
+            <a href="/docs" target="_blank" rel="noopener noreferrer" className="hover:text-white/80 transition-colors duration-200">Docs</a>
+            <a href="#pricing" className="hover:text-white/80 transition-colors duration-200">Pricing</a>
+          </div>
         </div>
 
+
+        {/* Tools Bar - Bottom floating buttons */}
+        <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+          <div className="flex flex-wrap justify-center gap-2 md:gap-3">
+            {/* Website & App Builder */}
+            <button
+              onClick={() => window.location.href = TOOL_URLS['website-builder']}
+              className="flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 bg-black/80 hover:bg-black border border-white/20 hover:border-white/40 rounded-full text-white text-xs md:text-sm font-medium transition-all duration-200 backdrop-blur-sm"
+              title="Créateur de Sites Web et Applications"
+            >
+              <Settings className="w-3 h-3 md:w-4 md:h-4" />
+              <span className="hidden md:inline">Site Web & App</span>
+              <ExternalLink className="w-2 h-2 md:w-3 md:h-3 opacity-60" />
+            </button>
+
+            {/* AI Agents */}
+            <button
+              onClick={() => window.location.href = TOOL_URLS['ai-agents']}
+              className="flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 bg-black/80 hover:bg-black border border-white/20 hover:border-white/40 rounded-full text-white text-xs md:text-sm font-medium transition-all duration-200 backdrop-blur-sm"
+              title="Agents IA"
+            >
+              <Bot className="w-3 h-3 md:w-4 md:h-4" />
+              <span className="hidden md:inline">Agents IA</span>
+              <ExternalLink className="w-2 h-2 md:w-3 md:h-3 opacity-60" />
+            </button>
+
+            {/* Text Editor */}
+            <button
+              onClick={() => window.location.href = TOOL_URLS['text-editor']}
+              className="flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 bg-black/80 hover:bg-black border border-white/20 hover:border-white/40 rounded-full text-white text-xs md:text-sm font-medium transition-all duration-200 backdrop-blur-sm"
+              title="Éditeur de Texte IA"
+            >
+              <FileText className="w-3 h-3 md:w-4 md:h-4" />
+              <span className="hidden md:inline">Texte</span>
+              <ExternalLink className="w-2 h-2 md:w-3 md:h-3 opacity-60" />
+            </button>
+          </div>
+        </div>
 
       </div>
     </div>

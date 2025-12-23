@@ -33,7 +33,7 @@ let supabase: SupabaseClient | null = null;
 
 if (isSupabaseConfigured()) {
   try {
-    supabase = createClient(supabaseUrl, supabaseAnonKey);
+  supabase = createClient(supabaseUrl, supabaseAnonKey);
   } catch (error) {
     console.warn('Failed to initialize Supabase client:', error);
     supabase = null;

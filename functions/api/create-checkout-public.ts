@@ -8,12 +8,12 @@ interface Env {
   STRIPE_PUBLISHABLE_KEY: string;
 }
 
-// Product IDs Stripe (vrais produits configurés dans le dashboard)
-const STRIPE_PRODUCTS: Record<string, { productId: string; name: string; credits: number }> = {
-  starter: { productId: 'prod_Te15MpLvqryJHB', name: 'AURION Starter', credits: 1000 },
-  plus: { productId: 'prod_Te17AfjPBXJkMf', name: 'AURION Plus', credits: 5000 },
-  pro: { productId: 'prod_Te4WWQ2JdqTiJ0', name: 'AURION Pro', credits: 25000 },
-  enterprise: { productId: 'prod_Te19LcD17x07QV', name: 'AURION Enterprise', credits: 100000 },
+// Configuration avec les vrais Price IDs Stripe
+const PLAN_CONFIGS = {
+  starter: { priceId: 'price_1Sgj2s018rEaMULFGFZmqHQj', name: 'AURION Starter', credits: 1000 },
+  plus: { priceId: 'price_1Sgj5E018rEaMULFKnB2L24E', name: 'AURION Plus', credits: 5000 },
+  pro: { priceId: 'price_1SgmNR018rEaMULFf6eBgFpT', name: 'AURION Pro', credits: 25000 },
+  enterprise: { priceId: 'price_1Sgj70018rEaMULFAr4izWzO', name: 'AURION Enterprise', credits: 100000 }
 };
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
@@ -21,8 +21,6 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json',
   };
-
-  // Log basic request info for debugging
 
   try {
     const body = await context.request.json() as {
@@ -34,108 +32,88 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
     const { planId, successUrl, cancelUrl, customerEmail } = body;
 
-    if (!planId || !STRIPE_PRODUCTS[planId]) {
+    // Vérifier le plan ID
+    if (!planId || !PLAN_CONFIGS[planId]) {
       return new Response(
-        JSON.stringify({ error: 'Invalid plan ID', availablePlans: Object.keys(STRIPE_PRODUCTS) }),
+        JSON.stringify({
+          error: 'Invalid plan ID',
+          availablePlans: Object.keys(PLAN_CONFIGS),
+          receivedPlanId: planId
+        }),
         { status: 400, headers: corsHeaders }
       );
     }
 
-    const plan = STRIPE_PRODUCTS[planId];
+    const planConfig = PLAN_CONFIGS[planId];
 
-    // Initialize Stripe
-    if (!context.env.STRIPE_SECRET_KEY) {
-      return new Response(
-        JSON.stringify({ error: 'Stripe configuration missing' }),
-        { status: 500, headers: corsHeaders }
-      );
-    }
+    // Configuration Stripe simplifiée (comme avant)
+    const STRIPE_SECRET_KEY = 'sk_live_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
 
-    const stripe = new Stripe(context.env.STRIPE_SECRET_KEY, {
+    const stripe = new Stripe(STRIPE_SECRET_KEY, {
       apiVersion: '2023-10-16',
     });
 
-    // Get prices for the product
-    let prices;
+    // Créer une session de checkout simple (comme avant)
     try {
-      prices = await stripe.prices.list({
-        product: plan.productId,
-        active: true,
-      });
-    } catch (stripeError) {
-      return new Response(
-        JSON.stringify({ error: 'Stripe API error', details: stripeError.message }),
-        { status: 500, headers: corsHeaders }
-      );
-    }
-
-    let price;
-
-    if (prices.data.length === 0) {
-      // Create dynamic price if none exists
-      const unitAmount = planId === 'starter' ? 900 : // 9€
-                         planId === 'plus' ? 2900 :    // 29€
-                         planId === 'pro' ? 9900 :     // 99€
-                         49900; // Enterprise 499€
-
-      try {
-        price = await stripe.prices.create({
-          product: plan.productId,
-          unit_amount: unitAmount,
-          currency: 'eur',
-          recurring: {
-            interval: 'month',
-          },
-          metadata: {
-            plan_id: planId,
-            credits: plan.credits.toString(),
-          },
-        });
-      } catch (createError) {
-        return new Response(
-          JSON.stringify({ error: 'Failed to create price', details: createError.message }),
-          { status: 500, headers: corsHeaders }
-        );
-      }
-    } else {
-      // Use existing active price
-      price = prices.data[0];
-    }
-
-    // Create Stripe Checkout Session
-    const session = await stripe.checkout.sessions.create({
+      const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
         {
-          price: price.id,
+          price_data: {
+            currency: 'eur',
+            product_data: {
+              name: planConfig.name,
+              description: `${planConfig.credits} crédits IA`,
+            },
+            unit_amount: planId === 'starter' ? 900 :
+                        planId === 'plus' ? 2900 :
+                        planId === 'pro' ? 9900 : 49900,
+            recurring: {
+              interval: 'month',
+            },
+          },
           quantity: 1,
         },
       ],
-      mode: 'subscription', // Tous les plans utilisent des abonnements mensuels
+      mode: 'subscription',
       success_url: successUrl || `${new URL(context.request.url).origin}/dashboard?payment=success`,
       cancel_url: cancelUrl || `${new URL(context.request.url).origin}/dashboard?payment=cancelled`,
       customer_email: customerEmail,
       metadata: {
         plan_id: planId,
-        credits: plan.credits.toString(),
-        product_id: plan.productId,
+        credits: planConfig.credits.toString(),
       },
     });
 
-    return new Response(
-      JSON.stringify({
-        url: session.url,
-        sessionId: session.id
-      }),
-      { status: 200, headers: corsHeaders }
-    );
+      return new Response(
+        JSON.stringify({
+          url: session.url,
+          sessionId: session.id,
+          planId: planId
+        }),
+        { status: 200, headers: corsHeaders }
+      );
+    } catch (stripeError: any) {
+      console.error('Stripe checkout error:', stripeError);
+      return new Response(
+        JSON.stringify({
+          error: 'Stripe checkout creation failed',
+          details: stripeError.message || 'Unknown Stripe error',
+          type: stripeError.type || 'Unknown error type',
+          code: stripeError.code || 'Unknown error code',
+          planId: planId,
+          priceId: planConfig.priceId
+        }),
+        { status: 500, headers: corsHeaders }
+      );
+    }
 
   } catch (error: any) {
-    console.error('❌ Checkout creation error:', error);
+    console.error('General error:', error);
     return new Response(
       JSON.stringify({
-        error: 'Failed to create checkout session',
-        message: error.message
+        error: 'Internal server error',
+        details: error.message
       }),
       { status: 500, headers: corsHeaders }
     );

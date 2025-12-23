@@ -7,8 +7,8 @@ import { BrowserRouter } from "react-router-dom";
 const basename = import.meta.env.BASE_URL;
 
 // Temporairement désactiver StrictMode pour debug
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <BrowserRouter basename={basename}>
-    <App />
-  </BrowserRouter>
-);
+  ReactDOM.createRoot(document.getElementById("root")!).render(
+      <BrowserRouter basename={basename}>
+        <App />
+      </BrowserRouter>
+  );

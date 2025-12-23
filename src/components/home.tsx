@@ -45,7 +45,7 @@ function Home() {
 
       {/* Fullscreen Overlay Menu */}
       {showPopup && (
-        <div className="fixed inset-2 md:inset-4 z-50 bg-black rounded-2xl md:rounded-3xl overflow-hidden">
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 z-50 bg-black rounded-2xl md:rounded-3xl overflow-hidden">
           {/* Close button */}
           <button
             onClick={closePopup}
@@ -204,5 +204,6 @@ function Home() {
 
     </div>
   );
+}
 
 export default Home;

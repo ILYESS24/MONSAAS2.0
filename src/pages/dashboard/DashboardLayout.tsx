@@ -76,7 +76,7 @@ export default function DashboardLayout() {
         {/* Right: Actions */}
         <div className="flex items-center gap-2 md:gap-4">
           {/* Search Icon (Mobile) */}
-          <button
+          <button 
             onClick={() => setSearchOpen(!searchOpen)}
             className="md:hidden w-9 h-9 rounded-full bg-white border border-gray-200/50 flex items-center justify-center text-gray-500 shadow-sm"
           >

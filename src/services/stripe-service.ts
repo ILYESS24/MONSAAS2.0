@@ -28,20 +28,20 @@ export interface SubscriptionStatus {
 // Ces IDs doivent correspondre aux produits/prix créés dans votre compte Stripe
 const STRIPE_PRICE_IDS: Record<PlanId, { monthly: string; yearly: string }> = {
   starter: {
-    monthly: 'price_starter_monthly', // Remplacer par le vrai ID
-    yearly: 'price_starter_yearly',
+    monthly: 'price_1Qe4W2JdqTiJ0_placeholder_monthly',
+    yearly: 'price_1Qe4W2JdqTiJ0_placeholder_yearly',
   },
   plus: {
-    monthly: 'price_plus_monthly',
-    yearly: 'price_plus_yearly',
+    monthly: 'price_1Qe17AfjPBXJkMf_placeholder_monthly',
+    yearly: 'price_1Qe17AfjPBXJkMf_placeholder_yearly',
   },
   pro: {
-    monthly: 'price_pro_monthly',
-    yearly: 'price_pro_yearly',
+    monthly: 'price_1Qe4WWQ2JdqTiJ0_placeholder_monthly',
+    yearly: 'price_1Qe4WWQ2JdqTiJ0_placeholder_yearly',
   },
   enterprise: {
-    monthly: 'price_enterprise_monthly',
-    yearly: 'price_enterprise_yearly',
+    monthly: 'price_1Qe19LcD17x07QV_placeholder_monthly',
+    yearly: 'price_1Qe19LcD17x07QV_placeholder_yearly',
   },
 };
 
