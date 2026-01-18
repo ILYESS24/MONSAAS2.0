@@ -1,0 +1,47 @@
+<div id="modal-developer" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="fa-solid fa-cog"></i> {{ heading_title }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div id="alert-modal"></div>
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <td>{{ text_html }}<br/>
+                <span class="fw-light">{{ help_html }}</span></td>
+              <td class="text-end"><button type="button" value="html" title="{{ button_clear }}" class="btn btn-warning"><i class="fa-solid fa-rotate"></i></button></td>
+            </tr>
+            <tr>
+              <td>{{ text_cache }}<br/>
+                <span class="fw-light">{{ help_cache }}</span></td>
+              <td class="text-end"><button type="button" value="cache" title="{{ button_clear }}" class="btn btn-warning"><i class="fa-solid fa-rotate"></i></button></td>
+            </tr>
+            <tr>
+              <td>{{ text_theme }}<br/>
+                <span class="fw-light">{{ help_theme }}</span></td>
+              <td class="text-end"><button type="button" value="theme" title="{{ button_clear }}" class="btn btn-warning"><i class="fa-solid fa-rotate"></i></button></td>
+            </tr>
+            <tr>
+              <td>{{ text_sass_catalog }}<br/>
+                <span class="fw-light">{{ help_sass_catalog }}</span></td>
+              <td class="text-end"><button type="button" value="sass_catalog" title="{{ button_clear }}" class="btn btn-warning"><i class="fa-solid fa-rotate"></i></button></td>
+            </tr>
+            <tr>
+              <td>{{ text_sass_admin }}<br/>
+                <span class="fw-light">{{ help_sass_admin }}</span></td>
+              <td class="text-end"><button type="button" value="sass_admin" title="{{ button_clear }}" class="btn btn-warning"><i class="fa-solid fa-rotate"></i></button></td>
+            </tr>
+            <tr>
+              <td>{{ text_vendor }}<br/>
+                <span class="fw-light">{{ help_vendor }}</span></td>
+              <td class="text-end"><button type="button" value="vendor" title="{{ button_clear }}" class="btn btn-warning"><i class="fa-solid fa-rotate"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

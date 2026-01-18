@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: opencart
+    runtime: docker
+    plan: starter
+    dockerfilePath: Downloads/opencart-master/opencart-master/Dockerfile
+    rootDir: Downloads/opencart-master/opencart-master
+    dockerContext: Downloads/opencart-master/opencart-master
+    envVars:
+      - key: PHP_VERSION
+        value: 8.2
+      - key: APP_ENV
+        value: production
+    healthCheckPath: /index.php
+
+databases:
+  - name: opencart-db
+    plan: free
+    databaseName: opencart
+    user: opencart
+

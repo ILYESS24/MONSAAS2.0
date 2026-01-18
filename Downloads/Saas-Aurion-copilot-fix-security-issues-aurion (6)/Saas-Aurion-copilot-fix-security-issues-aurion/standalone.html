@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURION - SaaS Platform IA</title>
+    <meta name="description" content="Plateforme IA tout-en-un pour génération d'images, vidéos, code et applications">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            max-width: 600px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            width: 100%;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-desc {
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .status-badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin: 2rem 0;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-section {
+            margin-top: 3rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 32px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer {
+            margin-top: 4rem;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .logo {
+                font-size: 3rem;
+            }
+
+            .subtitle {
+                font-size: 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .feature-card {
+                padding: 20px;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="fade-in">
+            <div class="logo">🚀 AURION</div>
+            <div class="subtitle">SaaS Platform IA</div>
+            <div class="tagline">
+                Plateforme de création IA tout-en-un pour générer images, vidéos, code et applications professionnelles
+            </div>
+        </div>
+
+        <div class="features-grid fade-in">
+            <div class="feature-card">
+                <span class="feature-icon">🎨</span>
+                <div class="feature-title">Génération d'Images</div>
+                <div class="feature-desc">
+                    Créez des visuels uniques avec 21 modèles IA professionnels (Flux, Mystic, Kontext, etc.)
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🎬</span>
+                <div class="feature-title">Génération de Vidéos</div>
+                <div class="feature-desc">
+                    Montez automatiquement vos vidéos avec 27 modèles IA (Kling, Luma, Runway, Sora)
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">💻</span>
+                <div class="feature-title">Génération de Code</div>
+                <div class="feature-desc">
+                    Développez des applications complètes avec l'assistance IA avancée
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🤖</span>
+                <div class="feature-title">Agents IA</div>
+                <div class="feature-desc">
+                    Automatisez vos tâches avec des agents IA intelligents et personnalisables
+                </div>
+            </div>
+        </div>
+
+        <div class="status-badges fade-in">
+            <div class="badge">✅ Déployé sur Cloudflare</div>
+            <div class="badge">🔒 Sécurité renforcée</div>
+            <div class="badge">⚡ Performance optimale</div>
+            <div class="badge">🎯 48 modèles IA</div>
+        </div>
+
+        <div class="cta-section fade-in">
+            <a href="#" class="cta-button" onclick="alert('🚀 AURION - Plateforme IA professionnelle déployée avec succès !\\n\\nFonctionnalités :\\n• Génération d\'images IA\\n• Génération de vidéos IA\\n• Génération de code\\n• Agents IA\\n\\nDéployé sur Cloudflare Pages avec sécurité renforcée.')">
+                🎯 Découvrir AURION
+            </a>
+        </div>
+
+        <div class="footer fade-in">
+            <p>🔥 Propulsé par Cloudflare Pages • Déployé le ${new Date().toLocaleDateString('fr-FR')}</p>
+        </div>
+    </div>
+
+    <script>
+        // AURION SaaS Platform - Application autonome
+        console.log('🚀 AURION SaaS Platform loaded successfully!');
+        console.log('🎯 Ready for AI generation: Images, Videos, Code & Applications');
+        console.log('✅ Deployed on Cloudflare Pages with enhanced security');
+
+        // Animation d'entrée progressive
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Message de bienvenue
+        setTimeout(() => {
+            console.log('🎉 AURION is now fully operational!');
+            console.log('🌐 Visit: https://be02a18d.aurion-saas.pages.dev');
+        }, 1000);
+    </script>
+</body>
+</html>

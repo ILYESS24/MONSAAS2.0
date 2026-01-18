@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>aurion® Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      .font-display {
+        font-family: 'Syne', sans-serif !important;
+      }
+      .font-body {
+        font-family: 'Manrope', sans-serif !important;
+      }
+      .syne-text {
+        font-family: 'Syne', sans-serif !important;
+      }
+      body, nav, div, p, span:not(.syne-text), a, button {
+        font-family: 'Manrope', sans-serif !important;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Syne', sans-serif !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <div style="
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    ">
+      <!-- Top Border Bar - black -->
+      <div style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: #000;
+        z-index: 100;
+      "></div>
+
+      <!-- Navigation -->
+      <nav style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 48px;
+      ">
+        <a href="/" style="
+          font-family: 'Manrope', sans-serif;
+          color: white;
+          font-size: 18px;
+          font-weight: 600;
+          text-decoration: none;
+        " class="font-body">
+          aurion<span style="font-size: 12px; vertical-align: super; margin-left: 2px;">®</span>
+        </a>
+
+        <div style="
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          gap: 48px;
+        ">
+                  <a href="#home" style="
+                    font-family: 'Manrope', sans-serif;
+                    color: white;
+                    font-size: 16px;
+                    text-decoration: none;
+                    position: relative;
+                    font-weight: 500;
+                  " class="font-body">Home</a>
+                  <a href="#about" style="
+                    font-family: 'Manrope', sans-serif;
+                    color: white;
+                    font-size: 16px;
+                    text-decoration: none;
+                    position: relative;
+                    font-weight: 500;
+                  " class="font-body">About</a>
+                  <a href="#blog" style="
+                    font-family: 'Manrope', sans-serif;
+                    color: white;
+                    font-size: 16px;
+                    text-decoration: none;
+                    position: relative;
+                    font-weight: 500;
+                  " class="font-body">Blog</a>
+                  <a href="#contact" style="
+                    font-family: 'Manrope', sans-serif;
+                    color: white;
+                    font-size: 16px;
+                    text-decoration: none;
+                    position: relative;
+                    font-weight: 500;
+                  " class="font-body">Contact</a>
+                  <a href="#reviews" style="
+                    font-family: 'Manrope', sans-serif;
+                    color: white;
+                    font-size: 16px;
+                    text-decoration: none;
+                    position: relative;
+                    font-weight: 500;
+                  " class="font-body">Reviews</a>
+        </div>
+
+        <button onclick="alert('Connexion à AURION - Fonctionnalité à venir...')" style="
+          font-family: 'Manrope', sans-serif;
+          background: transparent;
+          color: white;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          padding: 8px 16px;
+          border-radius: 20px;
+          font-size: 14px;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          backdrop-filter: blur(10px);
+        " class="font-body" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='rgba(255,255,255,0.6)'" onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(255,255,255,0.3)'">
+          Sign In
+        </button>
+      </nav>
+
+      <!-- Main Content -->
+      <main style="
+        position: relative;
+        z-index: 10;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        padding: 0px 48px 80px;
+      ">
+        <!-- Hero Section -->
+        <div style="
+          flex: 1;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          gap: 64px;
+        ">
+          <!-- Left: Hero Typography -->
+          <div style="flex: 1; margin-top: -20px;">
+            <h1 style="
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            color: white;
+            letter-spacing: -0.02em;
+            line-height: 0.85;
+          " class="font-display">
+            <span style="display: block; font-family: 'Syne', sans-serif; font-size: 200px; sm:font-size: 280px; md:font-size: 360px; lg:font-size: 440px; xl:font-size: 480px;" class="syne-text">
+              aurion
+              <span style="display: inline-flex; align-items: start;">
+                <span style="position: relative; margin-left: 15px;">
+                  <span style="
+                    font-family: 'Syne', sans-serif;
+                    font-size: 100px;
+                    font-weight: 700;
+                    border: 6px solid white;
+                    border-radius: 50%;
+                    width: 120px;
+                    height: 120px;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                  " class="syne-text">
+                    R
+                  </span>
+                </span>
+              </span>
+            </span>
+            <span style="display: block; font-family: 'Syne', sans-serif; font-size: 120px; margin-left: 200px; margin-top: -40px;" class="syne-text">
+              Studio
+            </span>
+            </h1>
+          </div>
+
+          <!-- Right: Services -->
+          <div style="
+            position: absolute;
+            right: 48px;
+            top: 50%;
+            transform: translateY(calc(-50% - 50px));
+            text-align: right;
+          ">
+            <div style="display: flex; flex-direction: column; gap: 6px; text-align: right;">
+              <div style="cursor: pointer;">
+                <span style="
+                  color: white;
+                  font-size: 18px;
+                  font-weight: 500;
+                  display: block;
+                " class="font-body">Code Editor</span>
+              </div>
+              <div style="cursor: pointer;">
+                <span style="
+                  color: white;
+                  font-size: 18px;
+                  font-weight: 500;
+                  display: block;
+                " class="font-body">Intelligent Canvas</span>
+              </div>
+              <div style="cursor: pointer;">
+                <span style="
+                  color: white;
+                  font-size: 18px;
+                  font-weight: 500;
+                  display: block;
+                " class="font-body">Text Editor</span>
+              </div>
+              <div style="cursor: pointer;">
+                <span style="
+                  color: white;
+                  font-size: 18px;
+                  font-weight: 500;
+                  display: block;
+                " class="font-body">App Builder</span>
+              </div>
+              <div style="cursor: pointer;">
+                <span style="
+                  color: white;
+                  font-size: 18px;
+                  font-weight: 500;
+                  display: block;
+                " class="font-body">Agent AI</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Section -->
+        <div style="
+          display: flex;
+          flex-direction: row;
+          align-items: flex-end;
+          justify-content: space-between;
+          gap: 64px;
+        ">
+          <!-- Left: Mission Statement -->
+          <div style="max-width: 320px;">
+            <p style="
+              color: white;
+              font-size: 14px;
+              line-height: 1.5;
+            " class="font-body">
+              <span style="font-weight: 600;">No generic websites. No empty marketing promises.</span>
+              <span style="color: rgba(255,255,255,0.6); display: block; margin-top: 8px;">
+                Just tools and strategies that help your business grow and your brand shine.
+              </span>
+            </p>
+          </div>
+
+        </div>
+      </main>
+
+      <!-- Legal Links - Bottom Right -->
+      <div style="
+        position: absolute;
+        bottom: 24px;
+        right: 48px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: center;
+        justify-content: flex-end;
+        z-index: 10;
+        max-width: 500px;
+      ">
+        <a href="/privacy" style="
+          color: rgba(255, 255, 255, 0.5);
+          text-decoration: none;
+          font-size: 11px;
+          font-weight: 400;
+          transition: color 0.3s ease;
+          font-family: 'Manrope', sans-serif;
+        " class="font-body" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">
+          Politique de confidentialité
+        </a>
+
+        <a href="/terms" style="
+          color: rgba(255, 255, 255, 0.5);
+          text-decoration: none;
+          font-size: 11px;
+          font-weight: 400;
+          transition: color 0.3s ease;
+          font-family: 'Manrope', sans-serif;
+        " class="font-body" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">
+          Conditions d'utilisation
+        </a>
+
+        <a href="/cookies" style="
+          color: rgba(255, 255, 255, 0.5);
+          text-decoration: none;
+          font-size: 11px;
+          font-weight: 400;
+          transition: color 0.3s ease;
+          font-family: 'Manrope', sans-serif;
+        " class="font-body" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">
+          Politique des cookies
+        </a>
+
+        <a href="/legal" style="
+          color: rgba(255, 255, 255, 0.5);
+          text-decoration: none;
+          font-size: 11px;
+          font-weight: 400;
+          transition: color 0.3s ease;
+          font-family: 'Manrope', sans-serif;
+        " class="font-body" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">
+          Mentions légales
+        </a>
+
+        <div style="
+          color: rgba(255, 255, 255, 0.4);
+          font-size: 10px;
+          font-weight: 400;
+          margin-top: 8px;
+          font-family: 'Manrope', sans-serif;
+        " class="font-body">
+          © 2024 AURION®. Tous droits réservés.
+        </div>
+        </div>
+
+    </div>
+
+  </body>
+</html>

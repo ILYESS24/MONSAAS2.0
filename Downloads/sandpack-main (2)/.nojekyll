@@ -1,0 +1,3 @@
+# Force static site detection for all platforms
+# This file tells GitHub Pages, Render, and other platforms
+# that this is a static site and should not be treated as Jekyll

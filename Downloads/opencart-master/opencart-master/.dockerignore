@@ -1,0 +1,15 @@
+tools/
+docker/
+node_modules
+.git
+.gitignore
+README.md
+DEPLOY_RENDER.md
+FIX_RENDER_DEPLOYMENT.md
+URGENT_RENDER_FIX.md
+RENDER_FIX.md
+*.md
+.env
+.env.*
+Dockerfile.render
+.dockerignore

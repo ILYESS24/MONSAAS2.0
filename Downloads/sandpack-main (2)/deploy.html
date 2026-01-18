@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Déploiement Cursor Clone - Liens de déploiement</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1e1e1e;
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            color: white;
+        }
+
+        .deploy-options {
+            display: grid;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .deploy-card {
+            background: #252526;
+            border: 1px solid #3e3e42;
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .deploy-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+            border-color: #0078d4;
+        }
+
+        .deploy-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #0078d4;
+        }
+
+        .deploy-description {
+            margin-bottom: 15px;
+            color: #858585;
+        }
+
+        .deploy-link {
+            display: inline-block;
+            background: #0078d4;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .deploy-link:hover {
+            background: #005a9e;
+            color: white;
+        }
+
+        .features {
+            background: #2a2d2e;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-item::before {
+            content: "✓";
+            color: #4ec9b0;
+            font-weight: bold;
+        }
+
+        .instructions {
+            background: #2a2d2e;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .code {
+            background: #1e1e1e;
+            border: 1px solid #3e3e42;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+
+        .warning {
+            background: #f14c4c;
+            color: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        .warning::before {
+            content: "⚠️ ";
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚀 Déploiement Cursor Clone</h1>
+        <p>Choisissez votre plateforme de déploiement préférée</p>
+    </div>
+
+    <div class="deploy-options">
+        <div class="deploy-card">
+            <div class="deploy-title">🌐 Netlify (Recommandé)</div>
+            <div class="deploy-description">
+                Déploiement ultra-rapide avec CDN global, HTTPS automatique, et déploiement continu depuis Git.
+            </div>
+            <a href="https://app.netlify.com/start/deploy?repository=https://github.com/yourusername/cursor-clone" class="deploy-link" target="_blank">
+                Déployer sur Netlify →
+            </a>
+        </div>
+
+        <div class="deploy-card">
+            <div class="deploy-title">⚡ Vercel</div>
+            <div class="deploy-description">
+                Plateforme de déploiement moderne avec preview deployments et analytics intégrés.
+            </div>
+            <a href="https://vercel.com/new/clone?repository-url=https://github.com/yourusername/cursor-clone" class="deploy-link" target="_blank">
+                Déployer sur Vercel →
+            </a>
+        </div>
+
+        <div class="deploy-card">
+            <div class="deploy-title">📄 GitHub Pages</div>
+            <div class="deploy-description">
+                Hébergement gratuit directement depuis votre repository GitHub.
+            </div>
+            <a href="https://pages.github.com/" class="deploy-link" target="_blank">
+                Configurer GitHub Pages →
+            </a>
+        </div>
+
+        <div class="deploy-card">
+            <div class="deploy-title">🔧 Render</div>
+            <div class="deploy-description">
+                Plateforme cloud gratuite avec bases de données et services backend.
+            </div>
+            <a href="https://dashboard.render.com/" class="deploy-link" target="_blank">
+                Créer un compte Render →
+            </a>
+        </div>
+
+        <div class="deploy-card">
+            <div class="deploy-title">🌊 Surge</div>
+            <div class="deploy-description">
+                Déploiement ultra-simple en ligne de commande pour sites statiques.
+            </div>
+            <a href="https://surge.sh/" class="deploy-link" target="_blank">
+                Découvrir Surge →
+            </a>
+        </div>
+    </div>
+
+    <div class="features">
+        <h2>✨ Fonctionnalités de l'application</h2>
+        <div class="feature-list">
+            <div class="feature-item">Éditeur de code Monaco (VS Code)</div>
+            <div class="feature-item">Terminal intégré avec commandes</div>
+            <div class="feature-item">Gestionnaire de fichiers virtuel</div>
+            <div class="feature-item">IA intégrée (Claude, GPT-4, etc.)</div>
+            <div class="feature-item">Interface sombre/claire</div>
+            <div class="feature-item">Recherche globale dans les fichiers</div>
+            <div class="feature-item">Prévisualisation HTML/CSS/JS</div>
+            <div class="feature-item">Raccourcis clavier complets</div>
+        </div>
+    </div>
+
+    <div class="instructions">
+        <h2>📋 Instructions de déploiement</h2>
+
+        <h3>1. Préparer le repository</h3>
+        <div class="code">
+        git init<br>
+        git add index.html<br>
+        git commit -m "Initial commit - Cursor Clone"<br>
+        git branch -M main<br>
+        git remote add origin https://github.com/yourusername/cursor-clone.git<br>
+        git push -u origin main
+        </div>
+
+        <h3>2. Choisir une plateforme</h3>
+        <p>Cliquez sur l'un des liens ci-dessus pour déployer automatiquement depuis votre repository GitHub.</p>
+
+        <h3>3. Configuration personnalisée</h3>
+        <p>Pour un déploiement personnalisé, vous pouvez utiliser ces services :</p>
+        <ul>
+            <li><strong>Netlify</strong> : Glissez-déposez le fichier HTML directement</li>
+            <li><strong>Surge</strong> : <code>npm install -g surge && surge</code></li>
+            <li><strong>GitHub Pages</strong> : Activez Pages dans les paramètres du repo</li>
+        </ul>
+    </div>
+
+    <div class="warning">
+        <strong>Note importante :</strong> Cette application utilise des APIs externes (Monaco Editor, XTerm, etc.) qui peuvent avoir des limitations de quota. Pour un usage en production, considérez héberger ces ressources localement.
+    </div>
+
+    <div style="text-align: center; margin-top: 30px; color: #666;">
+        <p>🔗 Liens de déploiement générés automatiquement • Cursor Clone v2.0</p>
+    </div>
+</body>
+</html>

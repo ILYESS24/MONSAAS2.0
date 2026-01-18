@@ -1,0 +1,16 @@
+// Script pour définir les variables d'environnement pendant le build
+process.env.VITE_CLERK_PUBLISHABLE_KEY = 'pk_test_YXNzdXJlZC1zYWxtb24tMzkuY2xlcmsuYWNjb3VudHMuZGV2JA';
+process.env.VITE_SUPABASE_URL = 'https://otxxjczxwhtngcferckz.supabase.co';
+process.env.VITE_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im90eHhqY3p4d2h0bmdjZmVyY2t6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU2NDcxOTEsImV4cCI6MjA4MTIyMzE5MX0.B4A300qQZCwP-aG4J29KfeazJM_Pp1eHKXQ98_bLMw8';
+
+// Variables pour le backend (non préfixées VITE)
+process.env.DATABASE_URL = 'postgresql://kortix_postgres_user:X3nRC9Mcc39e9fyr4xbAhNYs1aHXwwvX@dpg-d5erl7ngi27c73cafuug-a/kortix_postgres';
+process.env.ENV_MODE = 'production';
+process.env.OPENROUTEUR_API_KEY = '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';
+process.env.SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im90eHhqY3p4d2h0bmdjZmVyY2t6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU2NDcxOTEsImV4cCI6MjA4MTIyMzE5MX0.B4A300qQZCwP-aG4J29KfeazJM_Pp1eHKXQ98_bLMw8';
+process.env.SUPABASE_JWT_SECRET = 'sb_secret_dFkPdIRQq_TcSJ5WyXHt2g_WbZdjUki';
+process.env.SUPABASE_SERVICE_ROLE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im90eHhqY3p4d2h0bmdjZmVyY2t6Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2NTY0NzE5MSwiZXhwIjoyMDgxMjIzMTkxfQ.flRp7SzQGQwZJBG2NTecgwpMmVhUXmBAOVQJoibv-bg';
+process.env.SUPABASE_URL = 'https://otxxjczxwhtngcferckz.supabase.co';
+process.env.CLERK_SECRET_KEY = 'sk_test_2MAzfZSM5lFDgTTjZ2SNbYjsgFozmJZ5Ps4VuRqDUw';
+
+console.log('✅ TOUTES les variables d\'environnement HARDCODÉES pour la production');
