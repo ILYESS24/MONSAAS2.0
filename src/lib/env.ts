@@ -44,12 +44,11 @@ export function getEnvConfig(): EnvConfig {
 
 // Validate required environment variables
 export function validateEnv(): { isValid: boolean; errors: string[] } {
-  const _config = getEnvConfig();
   const errors: string[] = [];
 
   // Clerk authentication is now available in production
   // Users will be prompted to authenticate for personalized dashboards
-  // Config is used for validation checks if needed in the future
+  // Additional validation checks can be added here as needed
 
   return {
     isValid: errors.length === 0,

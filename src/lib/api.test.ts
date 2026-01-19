@@ -5,13 +5,12 @@
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { api, apiRequest, type ApiResponse, type ApiError } from '@/lib/api';
+import { api, apiRequest } from '@/lib/api';
+import type { ApiResponse, ApiError } from '@/lib/api';
 
-// Suppress unused variable warnings for type imports
-const _apiResponseType: ApiResponse<unknown> | null = null;
-const _apiErrorType: ApiError | null = null;
-void _apiResponseType;
-void _apiErrorType;
+// Type assertions for type-only imports used in test assertions below
+type _ApiResponse = ApiResponse<unknown>;
+type _ApiError = ApiError;
 
 describe('API Client', () => {
   let fetchSpy: ReturnType<typeof vi.spyOn>;
