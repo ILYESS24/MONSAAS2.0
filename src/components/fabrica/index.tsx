@@ -1,5 +1,5 @@
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState } from "react";
 import Navigation from "./Navigation";
 import HeroTypography from "./HeroTypography";
 import ServiceList from "./ServiceList";
@@ -8,7 +8,7 @@ import Footer from "./Footer";
 import LavaLampBackground from "./LavaLampBackground";
 import CustomCursor from "./CustomCursor";
 import IntroAnimation from "./IntroAnimation";
-import { WhatWeBelieve, Timeline, News, FAQ, Tools } from "./sections";
+import { WhatWeBelieve, Timeline, News, FAQ } from "./sections";
 
 // Section wrapper for stacking/snap scroll animation
 interface SectionWrapperProps {
@@ -117,21 +117,216 @@ const FooterSection = () => {
   );
 };
 
+// Minimalist Text Block Section - Left Aligned
+const TextBlockLeft = () => {
+  return (
+    <section className="w-full bg-black py-32 md:py-48 px-6 md:px-12 lg:px-24">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="max-w-3xl"
+        >
+          <span className="text-xs font-body tracking-[0.3em] uppercase text-white/40 mb-6 block">
+            Why Choose Aurion
+          </span>
+          <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-white leading-[1.1] mb-8">
+            AI tools that actually
+            <br />
+            <span className="text-white/50">work for your business.</span>
+          </h2>
+          <p className="font-body text-lg md:text-xl text-white/60 leading-relaxed max-w-xl">
+            Stop wasting time on tools that overpromise and underdeliver. 
+            Our platform delivers measurable results from day one — 
+            no learning curve, no hidden complexity.
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+// Minimalist Text Block Section - Right Aligned
+const TextBlockRight = () => {
+  return (
+    <section className="w-full bg-black py-32 md:py-48 px-6 md:px-12 lg:px-24">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="max-w-3xl ml-auto text-right"
+        >
+          <span className="text-xs font-body tracking-[0.3em] uppercase text-white/40 mb-6 block">
+            Built for Scale
+          </span>
+          <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-white leading-[1.1] mb-8">
+            From startup to enterprise,
+            <br />
+            <span className="text-white/50">we scale with you.</span>
+          </h2>
+          <p className="font-body text-lg md:text-xl text-white/60 leading-relaxed ml-auto max-w-xl">
+            Whether you're a solo founder or a Fortune 500 company, 
+            our infrastructure adapts to your needs. 
+            Pay for what you use, grow without limits.
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+// Minimalist Text Block Section - Center Aligned with Stats
+const TextBlockCenter = () => {
+  const stats = [
+    { value: "10x", label: "Faster Development" },
+    { value: "99.9%", label: "Uptime Guaranteed" },
+    { value: "50K+", label: "Active Users" },
+  ];
+
+  return (
+    <section className="w-full bg-black py-32 md:py-48 px-6 md:px-12 lg:px-24">
+      <div className="max-w-7xl mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="max-w-4xl mx-auto"
+        >
+          <span className="text-xs font-body tracking-[0.3em] uppercase text-white/40 mb-6 block">
+            The Numbers Speak
+          </span>
+          <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-white leading-[1.1] mb-16">
+            Results that matter,
+            <br />
+            <span className="text-white/50">not vanity metrics.</span>
+          </h2>
+        </motion.div>
+
+        {/* Stats */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-16 md:gap-24">
+          {stats.map((stat, index) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, amount: 0.3 }}
+              className="text-center"
+            >
+              <span className="font-display font-black text-6xl md:text-7xl lg:text-8xl text-white block mb-2">
+                {stat.value}
+              </span>
+              <span className="font-body text-sm md:text-base text-white/50 tracking-wide">
+                {stat.label}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Alternating Text Section - Split Layout
+const TextBlockSplit = () => {
+  return (
+    <section className="w-full bg-black py-32 md:py-48 px-6 md:px-12 lg:px-24">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 items-center">
+          {/* Left */}
+          <motion.div
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <span className="text-xs font-body tracking-[0.3em] uppercase text-white/40 mb-6 block">
+              Intelligent Automation
+            </span>
+            <h2 className="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-white leading-[1.1] mb-6">
+              Automate the repetitive.
+              <br />
+              <span className="text-white/50">Focus on what matters.</span>
+            </h2>
+            <p className="font-body text-base md:text-lg text-white/60 leading-relaxed">
+              Our AI handles the mundane tasks — data entry, scheduling, 
+              reporting — so your team can focus on strategy and creativity.
+              No more context switching, no more burnout.
+            </p>
+          </motion.div>
+
+          {/* Right */}
+          <motion.div
+            initial={{ opacity: 0, x: 60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <span className="text-xs font-body tracking-[0.3em] uppercase text-white/40 mb-6 block">
+              Real-time Collaboration
+            </span>
+            <h2 className="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-white leading-[1.1] mb-6">
+              Work together,
+              <br />
+              <span className="text-white/50">from anywhere.</span>
+            </h2>
+            <p className="font-body text-base md:text-lg text-white/60 leading-relaxed">
+              Real-time editing, instant sync, and seamless handoffs. 
+              Your team stays connected whether they're in the same 
+              room or across the globe.
+            </p>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Call-to-Action Section
+const CTASection = () => {
+  return (
+    <section className="w-full bg-black py-32 md:py-48 px-6 md:px-12 lg:px-24">
+      <div className="max-w-7xl mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <h2 className="font-display font-black text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white leading-[0.95] mb-8">
+            Ready to build
+            <br />
+            <span className="text-white/40">something great?</span>
+          </h2>
+          <p className="font-body text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-12 leading-relaxed">
+            Join thousands of teams who've transformed their workflow with Aurion. 
+            Start free — no credit card required.
+          </p>
+          <motion.a
+            href="/dashboard"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-body font-semibold text-base rounded-full hover:bg-white/90 transition-colors"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Start Building Today
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </motion.a>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
 const FabricaLanding = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
   const [showIntro, setShowIntro] = useState(true);
-
-  // Hide scroll indicator after first scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setShowScrollIndicator(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const handleIntroComplete = () => {
     setShowIntro(false);
@@ -188,66 +383,46 @@ const FabricaLanding = () => {
             </div>
           </div>
         </main>
-
-        {/* Scroll Indicator */}
-        <AnimatePresence>
-          {showScrollIndicator && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.5, delay: 1.5 }}
-              className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
-            >
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                className="flex flex-col items-center gap-2"
-              >
-                <span className="text-white/40 text-xs font-body tracking-wider uppercase">
-                  Scroll to explore
-                </span>
-                <svg
-                  className="w-5 h-5 text-white/40"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                  />
-                </svg>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </section>
 
-      {/* Stacking Sections with animations */}
-      <SectionWrapper index={1} id="tools">
-        <Tools />
+      {/* Minimalist Content Sections */}
+      <SectionWrapper index={1} id="why-aurion">
+        <TextBlockLeft />
       </SectionWrapper>
 
       <SectionWrapper index={2} id="what-we-believe">
         <WhatWeBelieve />
       </SectionWrapper>
 
-      <SectionWrapper index={3} id="timeline">
+      <SectionWrapper index={3} id="scale">
+        <TextBlockRight />
+      </SectionWrapper>
+
+      <SectionWrapper index={4} id="stats">
+        <TextBlockCenter />
+      </SectionWrapper>
+
+      <SectionWrapper index={5} id="features">
+        <TextBlockSplit />
+      </SectionWrapper>
+
+      <SectionWrapper index={6} id="timeline">
         <Timeline />
       </SectionWrapper>
 
-      <SectionWrapper index={4} id="news">
+      <SectionWrapper index={7} id="news">
         <News />
       </SectionWrapper>
 
-      <SectionWrapper index={5} id="faq">
+      <SectionWrapper index={8} id="faq">
         <FAQ />
       </SectionWrapper>
 
-      <SectionWrapper index={6} id="footer">
+      <SectionWrapper index={9} id="cta">
+        <CTASection />
+      </SectionWrapper>
+
+      <SectionWrapper index={10} id="footer">
         <FooterSection />
       </SectionWrapper>
     </div>
