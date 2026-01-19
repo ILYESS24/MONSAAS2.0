@@ -92,19 +92,15 @@ A comprehensive audit of the Aurion Studio SaaS platform has been completed. The
 ### 3.1 Tool Configuration
 | Tool | URL | Type | Status |
 |------|-----|------|--------|
-| Code Editor | bolt.new | iframe | ⚠️ See note |
-| App Builder | bolt.new | iframe | ⚠️ See note |
-| Agent AI | bolt.new | iframe | ⚠️ See note |
-| Aurion Chat | bolt.new | iframe | ⚠️ See note |
-| Text Editor | bolt.new | iframe | ⚠️ See note |
-| Intelligent Canvas | tldraw.com | iframe | ⚠️ See note |
+| Code Editor | eed972db.aurion-ide.pages.dev | iframe | ✅ Configured |
+| App Builder | production.ai-assistant-xlv.pages.dev | iframe | ✅ Configured |
+| Agent AI | flo-9xh2.onrender.com | iframe | ✅ Configured |
+| Aurion Chat | canvchat-1-y73q.onrender.com | iframe | ✅ Configured |
+| Text Editor | 4e2af144.aieditor.pages.dev | iframe | ✅ Configured |
+| Intelligent Canvas | tersa-main-b5f0ey7pq-launchmateais-projects.vercel.app/canvas/ | iframe | ✅ Configured |
 
 ### 3.2 Integration Status
-⚠️ **Important Note:** External services like `bolt.new` and `tldraw.com` have X-Frame-Options headers that prevent iframe embedding. For production, you need to:
-
-1. **Option A:** Deploy your own instances of these tools
-2. **Option B:** Use services that allow iframe embedding
-3. **Option C:** Use API integrations instead of iframes
+✅ **All tool URLs configured** with custom deployed instances that allow iframe embedding.
 
 ### 3.3 SecureIframe Features
 ✅ All implemented:
