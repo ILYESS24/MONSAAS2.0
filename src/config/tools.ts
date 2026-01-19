@@ -28,14 +28,15 @@ export interface ToolConfig {
 /**
  * Primary Tool URLs
  * These are the latest deployed versions of each tool
+ * Updated: 2026-01-19 with production URLs
  */
 export const TOOL_URLS = {
-  CODE_EDITOR: 'https://bolt.new',
-  APP_BUILDER: 'https://bolt.new',
-  AGENT_AI: 'https://bolt.new',
-  AURION_CHAT: 'https://bolt.new',
-  TEXT_EDITOR: 'https://bolt.new',
-  INTELLIGENT_CANVAS: 'https://tldraw.com',
+  CODE_EDITOR: 'https://eed972db.aurion-ide.pages.dev',
+  APP_BUILDER: 'https://production.ai-assistant-xlv.pages.dev',
+  AGENT_AI: 'https://flo-9xh2.onrender.com/',
+  AURION_CHAT: 'https://canvchat-1-y73q.onrender.com/',
+  TEXT_EDITOR: 'https://4e2af144.aieditor.pages.dev',
+  INTELLIGENT_CANVAS: 'https://tersa-main-b5f0ey7pq-launchmateais-projects.vercel.app/canvas/',
 } as const;
 
 /**

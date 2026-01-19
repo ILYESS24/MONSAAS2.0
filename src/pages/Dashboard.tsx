@@ -87,31 +87,31 @@ const navTabs = [
   { id: 'overview', label: 'Overview', icon: LayoutDashboard, route: '/dashboard' },
 ];
 
-// Weekly activity data for bar chart - sample data (replaced by live data when connected)
+// Weekly activity data for bar chart - starts at 0 (populated by live data when connected)
 const weeklySalesData = [
-  { day: 'Sat', value: 1240 },
-  { day: 'Sun', value: 980 },
-  { day: 'Mon', value: 2150 },
-  { day: 'Tue', value: 2680 },
-  { day: 'Wed', value: 3200 },
-  { day: 'Thu', value: 2890 },
-  { day: 'Fri', value: 3100 },
+  { day: 'Sat', value: 0 },
+  { day: 'Sun', value: 0 },
+  { day: 'Mon', value: 0 },
+  { day: 'Tue', value: 0 },
+  { day: 'Wed', value: 0 },
+  { day: 'Thu', value: 0 },
+  { day: 'Fri', value: 0 },
 ];
 
-// Weekly engagement donut data - sample data (replaced by live data when connected)
+// Weekly engagement donut data - starts at 0 (populated by live data when connected)
 const engagementData = [
-  { name: 'Mobile App', value: 4200, color: ACCENT_COLOR },
-  { name: 'Website', value: 6800, color: '#22C55E' },
+  { name: 'Mobile App', value: 0, color: ACCENT_COLOR },
+  { name: 'Website', value: 0, color: '#22C55E' },
 ];
 
-// Monthly trends area chart data - sample data (replaced by live data when connected)
+// Monthly trends area chart data - starts at 0 (populated by live data when connected)
 const salesTrendsData = [
-  { month: 'Jan', value: 12500 },
-  { month: 'Feb', value: 15800 },
-  { month: 'Mar', value: 18200 },
-  { month: 'Apr', value: 21500 },
-  { month: 'May', value: 28900 },
-  { month: 'Jun', value: 34200 },
+  { month: 'Jan', value: 0 },
+  { month: 'Feb', value: 0 },
+  { month: 'Mar', value: 0 },
+  { month: 'Apr', value: 0 },
+  { month: 'May', value: 0 },
+  { month: 'Jun', value: 0 },
 ];
 
 // Pricing plans data for dashboard section - Aligned with actual SaaS tools
