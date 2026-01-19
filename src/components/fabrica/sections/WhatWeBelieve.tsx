@@ -16,13 +16,6 @@ const WhatWeBelieve = () => {
       ref={sectionRef}
       className="min-h-screen w-full bg-black relative flex items-center justify-center px-6 md:px-12 lg:px-24 py-20"
     >
-      {/* Geometric grid lines */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute left-1/4 top-0 bottom-0 w-px bg-white/5" />
-        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/5" />
-        <div className="absolute left-3/4 top-0 bottom-0 w-px bg-white/5" />
-      </div>
-
       <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
         {/* Quote mark */}
         <motion.div

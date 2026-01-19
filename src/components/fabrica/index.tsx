@@ -7,7 +7,8 @@ import MissionStatement from "./MissionStatement";
 import Footer from "./Footer";
 import LavaLampBackground from "./LavaLampBackground";
 import CustomCursor from "./CustomCursor";
-import { WhatWeBelieve, Timeline, News, FAQ, Pricing } from "./sections";
+import IntroAnimation from "./IntroAnimation";
+import { WhatWeBelieve, Timeline, News, FAQ, Tools } from "./sections";
 
 // Section wrapper for stacking/snap scroll animation
 interface SectionWrapperProps {
@@ -48,13 +49,6 @@ const SectionWrapper = ({ children, index, id }: SectionWrapperProps) => {
 const FooterSection = () => {
   return (
     <section className="relative bg-black py-20 px-6 md:px-12">
-      {/* Geometric grid */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute left-1/4 top-0 bottom-0 w-px bg-white/5" />
-        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/5" />
-        <div className="absolute left-3/4 top-0 bottom-0 w-px bg-white/5" />
-      </div>
-
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
           {/* Left: Brand */}
@@ -126,6 +120,7 @@ const FooterSection = () => {
 const FabricaLanding = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [showScrollIndicator, setShowScrollIndicator] = useState(true);
+  const [showIntro, setShowIntro] = useState(true);
 
   // Hide scroll indicator after first scroll
   useEffect(() => {
@@ -138,11 +133,19 @@ const FabricaLanding = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleIntroComplete = () => {
+    setShowIntro(false);
+  };
+
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full bg-black cursor-none md:cursor-none overflow-x-hidden"
-    >
+    <>
+      {/* Intro Animation */}
+      {showIntro && <IntroAnimation onComplete={handleIntroComplete} />}
+
+      <div
+        ref={containerRef}
+        className="relative w-full bg-black cursor-none md:cursor-none overflow-x-hidden"
+      >
       {/* Custom Cursor - follows mouse across all sections */}
       <CustomCursor />
 
@@ -224,30 +227,31 @@ const FabricaLanding = () => {
       </section>
 
       {/* Stacking Sections with animations */}
-      <SectionWrapper index={1} id="what-we-believe">
+      <SectionWrapper index={1} id="tools">
+        <Tools />
+      </SectionWrapper>
+
+      <SectionWrapper index={2} id="what-we-believe">
         <WhatWeBelieve />
       </SectionWrapper>
 
-      <SectionWrapper index={2} id="timeline">
+      <SectionWrapper index={3} id="timeline">
         <Timeline />
       </SectionWrapper>
 
-      <SectionWrapper index={3} id="news">
+      <SectionWrapper index={4} id="news">
         <News />
       </SectionWrapper>
 
-      <SectionWrapper index={4} id="faq">
+      <SectionWrapper index={5} id="faq">
         <FAQ />
-      </SectionWrapper>
-
-      <SectionWrapper index={5} id="pricing">
-        <Pricing />
       </SectionWrapper>
 
       <SectionWrapper index={6} id="footer">
         <FooterSection />
       </SectionWrapper>
     </div>
+    </>
   );
 };
 

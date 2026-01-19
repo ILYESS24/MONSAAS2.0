@@ -42,41 +42,6 @@ const Timeline = () => {
       ref={sectionRef}
       className="min-h-screen w-full bg-black relative py-20 overflow-hidden"
     >
-      {/* Geometric grid - crosses at intersections */}
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(5)].map((_, i) => (
-          <div
-            key={`v-${i}`}
-            className="absolute top-0 bottom-0 w-px bg-white/5"
-            style={{ left: `${20 * (i + 1)}%` }}
-          />
-        ))}
-        {[...Array(3)].map((_, i) => (
-          <div
-            key={`h-${i}`}
-            className="absolute left-0 right-0 h-px bg-white/5"
-            style={{ top: `${25 * (i + 1)}%` }}
-          />
-        ))}
-        {/* Crosses at intersections */}
-        {[1, 2, 3, 4].map((col) =>
-          [1, 2, 3].map((row) => (
-            <div
-              key={`cross-${col}-${row}`}
-              className="absolute w-3 h-3"
-              style={{
-                left: `${20 * col}%`,
-                top: `${25 * row}%`,
-                transform: "translate(-50%, -50%)"
-              }}
-            >
-              <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/10 -translate-x-1/2" />
-              <div className="absolute top-1/2 left-0 right-0 h-px bg-white/10 -translate-y-1/2" />
-            </div>
-          ))
-        )}
-      </div>
-
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Timeline Container */}
         <div className="relative">
