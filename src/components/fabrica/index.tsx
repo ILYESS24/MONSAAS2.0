@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Navigation from "./Navigation";
 import HeroTypography from "./HeroTypography";
 import ServiceList from "./ServiceList";
@@ -5,10 +6,19 @@ import MissionStatement from "./MissionStatement";
 import Footer from "./Footer";
 import LavaLampBackground from "./LavaLampBackground";
 import CustomCursor from "./CustomCursor";
+import IntroSplash from "./IntroSplash";
+import HamburgerMenu from "./HamburgerMenu";
 
 const FabricaLanding = () => {
+  const [introComplete, setIntroComplete] = useState(false);
+
   return (
     <div className="relative min-h-screen h-screen w-full bg-black overflow-hidden cursor-none md:cursor-none">
+      {/* Intro Splash Animation */}
+      {!introComplete && (
+        <IntroSplash onComplete={() => setIntroComplete(true)} />
+      )}
+
       {/* Top Border Bar - black */}
       <div className="fixed top-0 left-0 right-0 h-2 md:h-3 bg-black z-[100]" />
       
@@ -17,6 +27,9 @@ const FabricaLanding = () => {
       
       {/* Animated Background */}
       <LavaLampBackground />
+
+      {/* Hamburger Menu - Left side */}
+      <HamburgerMenu />
 
       {/* Navigation */}
       <Navigation />

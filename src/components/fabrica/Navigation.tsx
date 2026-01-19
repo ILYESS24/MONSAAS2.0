@@ -10,14 +10,75 @@ const navItems = [
   { name: "Contact", href: "/contact" },
 ];
 
-const Navigation = () => {
-  // Get auth state with proper handling
-  const authConfigured = isAuthConfigured();
+// Auth-enabled CTA component
+const AuthCTA = () => {
+  const { isSignedIn, isLoaded } = useAuth();
 
-  // Only use Clerk hooks when auth is configured
-  const clerkAuth = authConfigured ? useAuth() : null;
-  const isSignedIn = clerkAuth?.isSignedIn ?? false;
-  const isLoaded = clerkAuth?.isLoaded ?? true;
+  if (!isLoaded) {
+    return (
+      <Link to="/dashboard">
+        <motion.span
+          className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium font-body hover:bg-white/90 transition-colors z-50 inline-block"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Accéder à mon espace
+        </motion.span>
+      </Link>
+    );
+  }
+
+  if (isSignedIn) {
+    return (
+      <>
+        <Link to="/dashboard">
+          <motion.span
+            className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium font-body hover:bg-white/90 transition-colors z-50 inline-block"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Mon tableau de bord
+          </motion.span>
+        </Link>
+        <UserButton
+          appearance={{
+            elements: {
+              avatarBox: "w-9 h-9 ring-2 ring-white/20",
+            }
+          }}
+        />
+      </>
+    );
+  }
+
+  return (
+    <SignInButton mode="modal">
+      <motion.button
+        className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium font-body hover:bg-white/90 transition-colors z-50"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        Accéder à mon espace
+      </motion.button>
+    </SignInButton>
+  );
+};
+
+// Demo mode CTA component
+const DemoCTA = () => (
+  <Link to="/dashboard">
+    <motion.span
+      className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium font-body hover:bg-white/90 transition-colors z-50 inline-block"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      Accéder à mon espace
+    </motion.span>
+  </Link>
+);
+
+const Navigation = () => {
+  const authConfigured = isAuthConfigured();
 
   return (
     <motion.nav
@@ -58,48 +119,7 @@ const Navigation = () => {
 
       {/* CTA Button */}
       <div className="flex items-center gap-4">
-        {isLoaded ? (
-          isSignedIn ? (
-            <>
-              <Link to="/dashboard">
-                <motion.span
-                  className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium font-body hover:bg-white/90 transition-colors z-50 inline-block"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Mon tableau de bord
-                </motion.span>
-              </Link>
-              <UserButton
-                appearance={{
-                  elements: {
-                    avatarBox: "w-9 h-9 ring-2 ring-white/20",
-                  }
-                }}
-              />
-            </>
-          ) : (
-            <SignInButton mode="modal">
-              <motion.button
-                className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium font-body hover:bg-white/90 transition-colors z-50"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Accéder à mon espace
-              </motion.button>
-            </SignInButton>
-          )
-        ) : (
-          <Link to="/dashboard">
-            <motion.span
-              className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium font-body hover:bg-white/90 transition-colors z-50 inline-block"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Accéder à mon espace
-            </motion.span>
-          </Link>
-        )}
+        {authConfigured ? <AuthCTA /> : <DemoCTA />}
       </div>
     </motion.nav>
   );
