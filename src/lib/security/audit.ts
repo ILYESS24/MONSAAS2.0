@@ -219,7 +219,8 @@ export class AuditLogger {
     const reset = '\x1b[0m';
     const color = colors[event.severity];
 
-    console.log(
+    // Use console.info for audit logs (allowed by ESLint config)
+    console.info(
       `${color}[AUDIT][${event.severity.toUpperCase()}]${reset}`,
       event.type,
       event.outcome,

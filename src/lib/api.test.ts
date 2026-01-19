@@ -5,8 +5,7 @@
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { api, apiRequest } from '@/lib/api';
-import type { ApiResponse, ApiError } from '@/lib/api';
+import { api, apiRequest, type ApiResponse, type ApiError } from '@/lib/api';
 
 // Type assertions for type-only imports used in test assertions below
 type _ApiResponse = ApiResponse<unknown>;

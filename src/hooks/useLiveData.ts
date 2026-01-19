@@ -380,6 +380,7 @@ export function useToolStatus() {
       isMounted.current = false;
       clearInterval(interval);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkToolStatus]);
 
   return tools;

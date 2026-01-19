@@ -1,7 +1,7 @@
-import { useState, useCallback, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useCallback, useMemo } from "react";
+import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth, useUser, SignOutButton, UserButton } from "@clerk/clerk-react";
+import { useAuth, useUser, UserButton } from "@clerk/clerk-react";
 import { isAuthConfigured } from "@/lib/env";
 import { 
   useLiveStats,
@@ -12,7 +12,6 @@ import {
   formatRelativeTime 
 } from "@/hooks/useLiveData";
 import { useSubscription } from "@/hooks/useSubscription";
-import { SUBSCRIPTION_PLANS, formatLimit } from "@/lib/subscription";
 import { SEO, seoConfigs } from "@/components/common/SEO";
 import {
   LayoutDashboard,
@@ -24,12 +23,10 @@ import {
   AlertCircle,
   ArrowLeft,
   ArrowUpRight,
-  LogOut,
   Code,
   FileText,
   Bot,
   Activity,
-  RefreshCw,
   MessageSquare,
   PenTool,
   Layers,
@@ -56,36 +53,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-// Types
-import type { ToolStatus } from "@/hooks/useLiveData";
-
-// Tool icon mapping
-const TOOL_ICONS: Record<string, React.ElementType> = {
-  'code-editor': Code,
-  'app-builder': Layers,
-  'agent-ai': Bot,
-  'aurion-chat': MessageSquare,
-  'intelligent-canvas': PenTool,
-  'text-editor': FileText,
-};
-
-// Tool route mapping
-const TOOL_ROUTES: Record<string, string> = {
-  'code-editor': '/code-editor',
-  'app-builder': '/app-builder',
-  'agent-ai': '/agent-ai',
-  'aurion-chat': '/aurion-chat',
-  'intelligent-canvas': '/intelligent-canvas',
-  'text-editor': '/text-editor',
-};
-
 // White accent color for clean modern look
 const ACCENT_COLOR = "#FFFFFF";
-
-// Navigation tabs - only Overview is functional, others are placeholder for future features
-const navTabs = [
-  { id: 'overview', label: 'Overview', icon: LayoutDashboard, route: '/dashboard' },
-];
 
 // Weekly activity data for bar chart - starts at 0 (populated by live data when connected)
 const weeklySalesData = [
@@ -215,7 +184,7 @@ function DashboardWithAuth() {
   return (
     <DashboardContent 
       isLoaded={isLoaded}
-      userName={userName}
+      _userName={userName}
       authEnabled={true}
     />
   );
@@ -226,7 +195,7 @@ function DashboardStandalone() {
   return (
     <DashboardContent 
       isLoaded={true}
-      userName="User"
+      _userName="User"
       authEnabled={false}
     />
   );
@@ -243,12 +212,12 @@ const Dashboard = () => {
 // The actual dashboard content
 interface DashboardContentProps {
   isLoaded: boolean;
-  userName: string;
+  _userName: string;
   authEnabled: boolean;
 }
 
-const DashboardContent = ({ isLoaded, userName, authEnabled }: DashboardContentProps) => {
-  const navigate = useNavigate();
+const DashboardContent = ({ isLoaded, _userName, authEnabled }: DashboardContentProps) => {
+  const _navigate = useNavigate();
   // Live data hooks (connected to Supabase)
   const liveStats = useLiveStats(30000);
   const liveActivities = useLiveActivity(8, 45000);

@@ -62,7 +62,7 @@ export const DatePicker = {
 };
 
 export const DatePickerRange = {
-  render: () => {
+  render: function DatePickerRangeRender() {
     const [date, setDate] = useState<DateRange | undefined>({
       from: new Date(2023, 0, 20),
       to: addDays(new Date(2023, 0, 20), 20),
@@ -110,7 +110,7 @@ export const DatePickerRange = {
 };
 
 export const DatePickerWithPresets = {
-  render: () => {
+  render: function DatePickerWithPresetsRender() {
     const [date, setDate] = useState<Date | undefined>(new Date(2023, 0, 20));
 
     return (
