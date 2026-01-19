@@ -24,6 +24,9 @@ export const ALLOWED_IFRAME_ORIGINS = [
   'https://tersa-main-b5f0ey7pq-launchmateais-projects.vercel.app',
   'https://4e2af144.aieditor.pages.dev',
   'https://www.google.com',
+  'https://bolt.new',
+  'https://tldraw.com',
+  'https://www.tldraw.com',
 ] as const;
 
 // Get environment configuration
