@@ -10,14 +10,21 @@ const navItems = [
   { name: "Contact", href: "/contact" },
 ];
 
-const Navigation = () => {
-  // Get auth state with proper handling
-  const authConfigured = isAuthConfigured();
+// Component that uses Clerk auth - only rendered when auth is configured
+const NavigationWithAuth = () => {
+  const { isSignedIn, isLoaded } = useAuth();
+  
+  return <NavigationContent isSignedIn={isSignedIn ?? false} isLoaded={isLoaded} showAuthButtons={true} />;
+};
 
-  // Only use Clerk hooks when auth is configured
-  const clerkAuth = authConfigured ? useAuth() : null;
-  const isSignedIn = clerkAuth?.isSignedIn ?? false;
-  const isLoaded = clerkAuth?.isLoaded ?? true;
+// Content component that doesn't use hooks conditionally
+interface NavigationContentProps {
+  isSignedIn: boolean;
+  isLoaded: boolean;
+  showAuthButtons: boolean;
+}
+
+const NavigationContent = ({ isSignedIn, isLoaded, showAuthButtons }: NavigationContentProps) => {
 
   return (
     <motion.nav
@@ -58,7 +65,7 @@ const Navigation = () => {
 
       {/* CTA Button */}
       <div className="flex items-center gap-4">
-        {isLoaded ? (
+        {showAuthButtons && isLoaded ? (
           isSignedIn ? (
             <>
               <Link to="/dashboard">
@@ -103,6 +110,18 @@ const Navigation = () => {
       </div>
     </motion.nav>
   );
+};
+
+// Main Navigation component
+const Navigation = () => {
+  const authConfigured = isAuthConfigured();
+  
+  if (authConfigured) {
+    return <NavigationWithAuth />;
+  }
+  
+  // Render without auth buttons in demo mode
+  return <NavigationContent isSignedIn={false} isLoaded={true} showAuthButtons={false} />;
 };
 
 export default Navigation;

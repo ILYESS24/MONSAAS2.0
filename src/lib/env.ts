@@ -17,6 +17,10 @@ interface EnvConfig {
 
 // Allowed iframe origins for security
 export const ALLOWED_IFRAME_ORIGINS = [
+  // Production tools
+  'https://bolt.new',
+  'https://tldraw.com',
+  // Legacy URLs (kept for backward compatibility)
   'https://eed972db.aurion-ide.pages.dev',
   'https://production.ai-assistant-xlv.pages.dev',
   'https://flo-9xh2.onrender.com',

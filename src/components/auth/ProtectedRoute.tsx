@@ -49,24 +49,13 @@ interface ProtectedRouteProps {
   requireAuth?: boolean;
 }
 
-export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
+// Component that uses Clerk auth - only rendered when auth is configured
+const ProtectedRouteWithAuth: React.FC<ProtectedRouteProps & { location: ReturnType<typeof useLocation> }> = ({
   children,
-  requireAuth = true
+  requireAuth = true,
+  location,
 }) => {
-  const location = useLocation();
-
-  // If auth is not configured, show demo mode warning or allow access
-  if (!isAuthConfigured()) {
-    // In development without auth, allow access with warning
-    if (import.meta.env.DEV) {
-      authLogger.warn('Auth not configured - running in demo mode');
-      return children ? <>{children}</> : <Outlet />;
-    }
-    // In production without auth, deny access
-    return <UnauthorizedAccess />;
-  }
-
-  // Use Clerk auth hook
+  // Use Clerk auth hook - always called at the top level
   const { isSignedIn, isLoaded } = useAuth();
 
   // Show loading while auth state is being determined
@@ -82,6 +71,32 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
 
   // User is authenticated, render the protected content
   return children ? <>{children}</> : <Outlet />;
+};
+
+export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
+  children,
+  requireAuth = true
+}) => {
+  const location = useLocation();
+  const authConfigured = isAuthConfigured();
+
+  // If auth is not configured, show demo mode warning or allow access
+  if (!authConfigured) {
+    // In development without auth, allow access with warning
+    if (import.meta.env.DEV) {
+      authLogger.warn('Auth not configured - running in demo mode');
+      return children ? <>{children}</> : <Outlet />;
+    }
+    // In production without auth, deny access
+    return <UnauthorizedAccess />;
+  }
+
+  // Render the auth-enabled version
+  return (
+    <ProtectedRouteWithAuth requireAuth={requireAuth} location={location}>
+      {children}
+    </ProtectedRouteWithAuth>
+  );
 };
 
 // Higher-order component version for wrapping components

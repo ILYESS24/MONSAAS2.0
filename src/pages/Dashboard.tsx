@@ -1,7 +1,7 @@
-import { useState, useCallback, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth, useUser, SignOutButton, UserButton } from "@clerk/clerk-react";
+import { useCallback, useMemo } from "react";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { useAuth, useUser, UserButton } from "@clerk/clerk-react";
 import { isAuthConfigured } from "@/lib/env";
 import { 
   useLiveStats,
@@ -12,7 +12,6 @@ import {
   formatRelativeTime 
 } from "@/hooks/useLiveData";
 import { useSubscription } from "@/hooks/useSubscription";
-import { SUBSCRIPTION_PLANS, formatLimit } from "@/lib/subscription";
 import { SEO, seoConfigs } from "@/components/common/SEO";
 import {
   LayoutDashboard,
@@ -24,12 +23,10 @@ import {
   AlertCircle,
   ArrowLeft,
   ArrowUpRight,
-  LogOut,
   Code,
   FileText,
   Bot,
   Activity,
-  RefreshCw,
   MessageSquare,
   PenTool,
   Layers,
@@ -56,11 +53,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-// Types
-import type { ToolStatus } from "@/hooks/useLiveData";
-
 // Tool icon mapping
-const TOOL_ICONS: Record<string, React.ElementType> = {
+const _TOOL_ICONS: Record<string, React.ElementType> = {
   'code-editor': Code,
   'app-builder': Layers,
   'agent-ai': Bot,
@@ -70,7 +64,7 @@ const TOOL_ICONS: Record<string, React.ElementType> = {
 };
 
 // Tool route mapping
-const TOOL_ROUTES: Record<string, string> = {
+const _TOOL_ROUTES: Record<string, string> = {
   'code-editor': '/code-editor',
   'app-builder': '/app-builder',
   'agent-ai': '/agent-ai',
@@ -83,7 +77,7 @@ const TOOL_ROUTES: Record<string, string> = {
 const ACCENT_COLOR = "#FFFFFF";
 
 // Navigation tabs - only Overview is functional, others are placeholder for future features
-const navTabs = [
+const _navTabs = [
   { id: 'overview', label: 'Overview', icon: LayoutDashboard, route: '/dashboard' },
 ];
 
@@ -247,8 +241,7 @@ interface DashboardContentProps {
   authEnabled: boolean;
 }
 
-const DashboardContent = ({ isLoaded, userName, authEnabled }: DashboardContentProps) => {
-  const navigate = useNavigate();
+const DashboardContent = ({ isLoaded, userName: _userName, authEnabled }: DashboardContentProps) => {
   // Live data hooks (connected to Supabase)
   const liveStats = useLiveStats(30000);
   const liveActivities = useLiveActivity(8, 45000);

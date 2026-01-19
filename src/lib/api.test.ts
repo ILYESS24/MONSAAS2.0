@@ -5,8 +5,7 @@
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { api, apiRequest } from '@/lib/api';
-import type { ApiResponse, ApiError } from '@/lib/api';
+import { api, apiRequest, type ApiResponse } from '@/lib/api';
 
 describe('API Client', () => {
   let fetchSpy: ReturnType<typeof vi.spyOn>;

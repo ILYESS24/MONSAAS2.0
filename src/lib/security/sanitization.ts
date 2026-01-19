@@ -107,7 +107,7 @@ export function sanitizeHtml(
  * Characters that are dangerous in SQL contexts
  * Note: Semicolons are handled separately to avoid breaking legitimate queries
  */
-const SQL_DANGEROUS_CHARS = /['"\\\-]/g;
+const SQL_DANGEROUS_CHARS = /['"\\-]/g;
 
 /**
  * Common SQL injection patterns
