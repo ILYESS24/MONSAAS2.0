@@ -30,12 +30,12 @@ const articles = [
 
 const News = () => {
   return (
-    <section className="min-h-screen w-full bg-[#f5f5f5] relative py-20 px-6 md:px-12">
+    <section className="min-h-screen w-full bg-black relative py-20 px-6 md:px-12">
       {/* Geometric grid lines */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute left-1/4 top-0 bottom-0 w-px bg-black/5" />
-        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-black/5" />
-        <div className="absolute left-3/4 top-0 bottom-0 w-px bg-black/5" />
+        <div className="absolute left-1/4 top-0 bottom-0 w-px bg-white/5" />
+        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/5" />
+        <div className="absolute left-3/4 top-0 bottom-0 w-px bg-white/5" />
       </div>
 
       <div className="max-w-7xl mx-auto">
@@ -46,7 +46,7 @@ const News = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true, amount: 0.3 }}
-            className="font-display font-black text-6xl md:text-7xl lg:text-8xl text-black tracking-[-0.02em]"
+            className="font-display font-black text-6xl md:text-7xl lg:text-8xl text-white tracking-[-0.02em]"
           >
             NEWS
           </motion.h2>
@@ -57,7 +57,7 @@ const News = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true, amount: 0.3 }}
-            className="flex items-center gap-2 text-black font-body text-sm font-medium hover:gap-3 transition-all group"
+            className="flex items-center gap-2 text-white font-body text-sm font-medium hover:gap-3 transition-all group"
           >
             <span className="underline underline-offset-4">All articles</span>
             <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -83,15 +83,15 @@ const News = () => {
             >
               {/* Date */}
               <div className="flex items-center gap-2 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-black" />
-                <span className="text-[10px] font-body tracking-[0.15em] uppercase text-black/50">
+                <span className="w-1.5 h-1.5 rounded-full bg-white" />
+                <span className="text-[10px] font-body tracking-[0.15em] uppercase text-white/50">
                   {article.date}
                 </span>
               </div>
 
               {/* Image Container */}
               <div
-                className={`relative overflow-hidden bg-gray-200 mb-4 ${
+                className={`relative overflow-hidden bg-white/10 mb-4 ${
                   article.size === "tall"
                     ? "aspect-[3/5]"
                     : article.size === "large"
@@ -134,7 +134,7 @@ const News = () => {
 
               {/* Title */}
               <motion.h3
-                className="font-body text-base md:text-lg font-medium text-black leading-tight group-hover:underline underline-offset-4 transition-all"
+                className="font-body text-base md:text-lg font-medium text-white leading-tight group-hover:underline underline-offset-4 transition-all"
               >
                 {article.title}
               </motion.h3>

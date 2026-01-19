@@ -29,12 +29,12 @@ const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="min-h-screen w-full bg-[#f5f5f5] relative py-20 px-6 md:px-12">
+    <section className="min-h-screen w-full bg-black relative py-20 px-6 md:px-12">
       {/* Geometric grid lines */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute left-1/3 top-0 bottom-0 w-px bg-black/5" />
-        <div className="absolute left-2/3 top-0 bottom-0 w-px bg-black/5" />
-        <div className="absolute left-0 right-0 top-1/4 h-px bg-black/5" />
+        <div className="absolute left-1/3 top-0 bottom-0 w-px bg-white/5" />
+        <div className="absolute left-2/3 top-0 bottom-0 w-px bg-white/5" />
+        <div className="absolute left-0 right-0 top-1/4 h-px bg-white/5" />
       </div>
 
       <div className="max-w-4xl mx-auto">
@@ -44,7 +44,7 @@ const FAQ = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true, amount: 0.3 }}
-          className="font-display font-black text-6xl md:text-7xl lg:text-8xl text-black tracking-[-0.02em] mb-16"
+          className="font-display font-black text-6xl md:text-7xl lg:text-8xl text-white tracking-[-0.02em] mb-16"
         >
           FAQ
         </motion.h2>
@@ -62,7 +62,7 @@ const FAQ = () => {
                 ease: [0.22, 1, 0.36, 1]
               }}
               viewport={{ once: true, amount: 0.3 }}
-              className="border-t border-black/10"
+              className="border-t border-white/10"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
@@ -70,11 +70,11 @@ const FAQ = () => {
               >
                 <div className="flex items-center gap-6">
                   {/* Number */}
-                  <span className="text-sm font-body text-black/40 w-8">
+                  <span className="text-sm font-body text-white/40 w-8">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   {/* Question */}
-                  <span className="font-body text-lg md:text-xl font-medium text-black group-hover:text-black/70 transition-colors">
+                  <span className="font-body text-lg md:text-xl font-medium text-white group-hover:text-white/70 transition-colors">
                     {item.question}
                   </span>
                 </div>
@@ -84,9 +84,9 @@ const FAQ = () => {
                   className="flex-shrink-0 ml-4"
                 >
                   {openIndex === index ? (
-                    <Minus className="w-5 h-5 text-black/60" />
+                    <Minus className="w-5 h-5 text-white/60" />
                   ) : (
-                    <Plus className="w-5 h-5 text-black/60" />
+                    <Plus className="w-5 h-5 text-white/60" />
                   )}
                 </motion.div>
               </button>
@@ -105,7 +105,7 @@ const FAQ = () => {
                     className="overflow-hidden"
                   >
                     <div className="pb-6 pl-14">
-                      <p className="text-xs md:text-sm font-body tracking-[0.08em] uppercase text-black/50 leading-relaxed max-w-2xl">
+                      <p className="text-xs md:text-sm font-body tracking-[0.08em] uppercase text-white/50 leading-relaxed max-w-2xl">
                         {item.answer}
                       </p>
                     </div>
@@ -115,7 +115,7 @@ const FAQ = () => {
             </motion.div>
           ))}
           {/* Bottom border */}
-          <div className="border-t border-black/10" />
+          <div className="border-t border-white/10" />
         </div>
       </div>
     </section>

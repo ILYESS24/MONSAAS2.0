@@ -40,21 +40,21 @@ const Timeline = () => {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen w-full bg-[#f5f5f5] relative py-20 overflow-hidden"
+      className="min-h-screen w-full bg-black relative py-20 overflow-hidden"
     >
       {/* Geometric grid - crosses at intersections */}
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(5)].map((_, i) => (
           <div
             key={`v-${i}`}
-            className="absolute top-0 bottom-0 w-px bg-black/5"
+            className="absolute top-0 bottom-0 w-px bg-white/5"
             style={{ left: `${20 * (i + 1)}%` }}
           />
         ))}
         {[...Array(3)].map((_, i) => (
           <div
             key={`h-${i}`}
-            className="absolute left-0 right-0 h-px bg-black/5"
+            className="absolute left-0 right-0 h-px bg-white/5"
             style={{ top: `${25 * (i + 1)}%` }}
           />
         ))}
@@ -70,8 +70,8 @@ const Timeline = () => {
                 transform: "translate(-50%, -50%)"
               }}
             >
-              <div className="absolute left-1/2 top-0 bottom-0 w-px bg-black/10 -translate-x-1/2" />
-              <div className="absolute top-1/2 left-0 right-0 h-px bg-black/10 -translate-y-1/2" />
+              <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/10 -translate-x-1/2" />
+              <div className="absolute top-1/2 left-0 right-0 h-px bg-white/10 -translate-y-1/2" />
             </div>
           ))
         )}
@@ -126,7 +126,7 @@ const Timeline = () => {
                       ease: [0.22, 1, 0.36, 1]
                     }}
                     viewport={{ once: true, amount: 0.3 }}
-                    className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-black mb-4"
+                    className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-white mb-4"
                   >
                     {milestone.year}
                   </motion.h3>
@@ -141,7 +141,7 @@ const Timeline = () => {
                       ease: [0.22, 1, 0.36, 1]
                     }}
                     viewport={{ once: true, amount: 0.3 }}
-                    className="text-sm font-body text-black/70 mb-8 flex items-center gap-2"
+                    className="text-sm font-body text-white/70 mb-8 flex items-center gap-2"
                   >
                     <span className="font-medium">{milestone.logo}</span>
                   </motion.div>
@@ -156,7 +156,7 @@ const Timeline = () => {
                       ease: [0.22, 1, 0.36, 1]
                     }}
                     viewport={{ once: true, amount: 0.3 }}
-                    className="text-xs font-body tracking-[0.15em] uppercase text-black/50 leading-relaxed"
+                    className="text-xs font-body tracking-[0.15em] uppercase text-white/50 leading-relaxed"
                   >
                     {milestone.title}
                   </motion.p>

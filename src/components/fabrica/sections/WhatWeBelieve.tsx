@@ -14,13 +14,13 @@ const WhatWeBelieve = () => {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen w-full bg-[#f5f5f5] relative flex items-center justify-center px-6 md:px-12 lg:px-24 py-20"
+      className="min-h-screen w-full bg-black relative flex items-center justify-center px-6 md:px-12 lg:px-24 py-20"
     >
       {/* Geometric grid lines */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute left-1/4 top-0 bottom-0 w-px bg-black/5" />
-        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-black/5" />
-        <div className="absolute left-3/4 top-0 bottom-0 w-px bg-black/5" />
+        <div className="absolute left-1/4 top-0 bottom-0 w-px bg-white/5" />
+        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/5" />
+        <div className="absolute left-3/4 top-0 bottom-0 w-px bg-white/5" />
       </div>
 
       <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
@@ -36,7 +36,7 @@ const WhatWeBelieve = () => {
             width="120"
             height="100"
             viewBox="0 0 120 100"
-            className="text-black/10"
+            className="text-white/10"
             fill="currentColor"
           >
             <path d="M0 60C0 26.8629 26.8629 0 60 0V30C43.4315 30 30 43.4315 30 60H0Z" />
@@ -54,8 +54,8 @@ const WhatWeBelieve = () => {
             viewport={{ once: true, amount: 0.3 }}
             className="flex items-center gap-3 mb-8"
           >
-            <span className="w-2 h-2 rounded-full bg-black" />
-            <span className="text-xs font-body tracking-[0.2em] uppercase text-black/60">
+            <span className="w-2 h-2 rounded-full bg-white" />
+            <span className="text-xs font-body tracking-[0.2em] uppercase text-white/60">
               10 • What We Believe
             </span>
           </motion.div>
@@ -63,7 +63,7 @@ const WhatWeBelieve = () => {
           {/* Main quote */}
           <motion.h2
             style={{ opacity, y }}
-            className="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[0.95] tracking-[-0.02em] text-black"
+            className="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[0.95] tracking-[-0.02em] text-white"
           >
             <motion.span
               initial={{ opacity: 0, y: 40 }}
@@ -115,7 +115,7 @@ const WhatWeBelieve = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
               viewport={{ once: true, amount: 0.3 }}
-              className="block text-black/40"
+              className="block text-white/40"
             >
               AND WITHOUT
             </motion.span>
@@ -124,7 +124,7 @@ const WhatWeBelieve = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
               viewport={{ once: true, amount: 0.3 }}
-              className="block text-black/30"
+              className="block text-white/30"
             >
               WASTING YOUR TIME.
             </motion.span>
@@ -133,7 +133,7 @@ const WhatWeBelieve = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
               viewport={{ once: true, amount: 0.3 }}
-              className="block text-black/25"
+              className="block text-white/25"
             >
               AI CAN BE USEFUL, BUT
             </motion.span>
@@ -142,7 +142,7 @@ const WhatWeBelieve = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
               viewport={{ once: true, amount: 0.3 }}
-              className="block text-black/20"
+              className="block text-white/20"
             >
               ONLY IF IT'S DONE
             </motion.span>
@@ -151,7 +151,7 @@ const WhatWeBelieve = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
               viewport={{ once: true, amount: 0.3 }}
-              className="block text-black/15"
+              className="block text-white/15"
             >
               RIGHT.
             </motion.span>
@@ -163,7 +163,7 @@ const WhatWeBelieve = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true, amount: 0.3 }}
-            className="mt-12 text-base md:text-lg text-black/60 font-body max-w-lg leading-relaxed"
+            className="mt-12 text-base md:text-lg text-white/60 font-body max-w-lg leading-relaxed"
           >
             We're here to make AI work in the real world —{" "}
             without noise, hype, or distractions.

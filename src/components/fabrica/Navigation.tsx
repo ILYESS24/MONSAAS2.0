@@ -1,6 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { useAuth, SignInButton, UserButton } from "@clerk/clerk-react";
 import { isAuthConfigured } from "@/lib/env";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
@@ -16,20 +15,45 @@ interface NavigationProps {
   variant?: "dark" | "light";
 }
 
+// Default button when auth is not configured
+const DefaultAuthButton = ({ 
+  isMobile, 
+  variant, 
+  scrolled, 
+  onClose 
+}: { 
+  isMobile: boolean; 
+  variant: "dark" | "light"; 
+  scrolled: boolean;
+  onClose?: () => void;
+}) => {
+  const buttonClass = isMobile 
+    ? "bg-white text-black px-6 py-3 rounded-full text-base font-medium font-body"
+    : `px-4 py-2 rounded-full text-sm font-medium font-body transition-colors z-50 ${
+        variant === "light" || scrolled
+          ? "bg-black text-white hover:bg-black/80"
+          : "bg-white text-black hover:bg-white/90"
+      }`;
+
+  return (
+    <Link to="/dashboard" onClick={onClose}>
+      <motion.span
+        className={buttonClass + (isMobile ? "" : " inline-block")}
+        whileHover={!isMobile ? { scale: 1.05 } : undefined}
+        whileTap={!isMobile ? { scale: 0.95 } : undefined}
+      >
+        Accéder à mon espace
+      </motion.span>
+    </Link>
+  );
+};
+
 const Navigation = ({ variant = "dark" }: NavigationProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   
-  // Get auth state with proper handling
+  // Check if auth is configured
   const authConfigured = isAuthConfigured();
-
-  // Always call useAuth hook (rules of hooks), but only use values when configured
-  // This is safe because ClerkProvider wraps the app
-  const clerkAuth = useAuth();
-  
-  // Only use auth values when properly configured
-  const isSignedIn = authConfigured ? (clerkAuth?.isSignedIn ?? false) : false;
-  const isLoaded = authConfigured ? (clerkAuth?.isLoaded ?? true) : true;
 
   // Track scroll for background change
   useEffect(() => {
@@ -43,69 +67,17 @@ const Navigation = ({ variant = "dark" }: NavigationProps) => {
   const textColor = variant === "light" || scrolled ? "text-black" : "text-white";
   const bgColor = scrolled ? "bg-white/90 backdrop-blur-lg shadow-sm" : "bg-transparent";
 
-  // Auth button render logic
+  // Render auth button - always use default when auth not configured
   const renderAuthButton = (isMobile = false) => {
-    if (!isLoaded) return null;
-    
-    const buttonClass = isMobile 
-      ? "bg-white text-black px-6 py-3 rounded-full text-base font-medium font-body"
-      : `px-4 py-2 rounded-full text-sm font-medium font-body transition-colors z-50 ${
-          variant === "light" || scrolled
-            ? "bg-black text-white hover:bg-black/80"
-            : "bg-white text-black hover:bg-white/90"
-        }`;
-
-    if (authConfigured && isSignedIn) {
-      return (
-        <>
-          <Link to="/dashboard" onClick={isMobile ? () => setIsMenuOpen(false) : undefined}>
-            <motion.span
-              className={buttonClass + (isMobile ? "" : " inline-block")}
-              whileHover={!isMobile ? { scale: 1.05 } : undefined}
-              whileTap={!isMobile ? { scale: 0.95 } : undefined}
-            >
-              Mon tableau de bord
-            </motion.span>
-          </Link>
-          {!isMobile && authConfigured && (
-            <UserButton
-              appearance={{
-                elements: {
-                  avatarBox: "w-9 h-9 ring-2 ring-white/20",
-                }
-              }}
-            />
-          )}
-        </>
-      );
-    }
-
-    if (authConfigured) {
-      return (
-        <SignInButton mode="modal">
-          <motion.button
-            className={buttonClass}
-            whileHover={!isMobile ? { scale: 1.05 } : undefined}
-            whileTap={!isMobile ? { scale: 0.95 } : undefined}
-            onClick={isMobile ? () => setIsMenuOpen(false) : undefined}
-          >
-            Accéder à mon espace
-          </motion.button>
-        </SignInButton>
-      );
-    }
-
-    // No auth configured - show dashboard link directly
+    // For now, always render the default button since Clerk is not configured
+    // When Clerk is properly set up, this can be enhanced to use Clerk components
     return (
-      <Link to="/dashboard" onClick={isMobile ? () => setIsMenuOpen(false) : undefined}>
-        <motion.span
-          className={buttonClass + (isMobile ? "" : " inline-block")}
-          whileHover={!isMobile ? { scale: 1.05 } : undefined}
-          whileTap={!isMobile ? { scale: 0.95 } : undefined}
-        >
-          Accéder à mon espace
-        </motion.span>
-      </Link>
+      <DefaultAuthButton 
+        isMobile={isMobile} 
+        variant={variant} 
+        scrolled={scrolled} 
+        onClose={isMobile ? () => setIsMenuOpen(false) : undefined}
+      />
     );
   };
 
