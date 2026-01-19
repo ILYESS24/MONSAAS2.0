@@ -1,31 +1,40 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface IntroSplashProps {
   onComplete: () => void;
 }
 
+// Animation timing constants
+const DISPLAY_DURATION = 1500; // Time to display splash before split
+const SPLIT_DURATION = 800;    // Duration of split animation
+const TOTAL_DURATION = DISPLAY_DURATION + SPLIT_DURATION;
+
 const IntroSplash = ({ onComplete }: IntroSplashProps) => {
   const [showSplash, setShowSplash] = useState(true);
   const [startSplit, setStartSplit] = useState(false);
 
+  const handleComplete = useCallback(() => {
+    setShowSplash(false);
+    onComplete();
+  }, [onComplete]);
+
   useEffect(() => {
-    // Start split animation after 1.5 seconds
+    // Start split animation after display duration
     const splitTimer = setTimeout(() => {
       setStartSplit(true);
-    }, 1500);
+    }, DISPLAY_DURATION);
 
     // Complete animation and hide splash
     const completeTimer = setTimeout(() => {
-      setShowSplash(false);
-      onComplete();
-    }, 2300); // 1.5s display + 0.8s split animation
+      handleComplete();
+    }, TOTAL_DURATION);
 
     return () => {
       clearTimeout(splitTimer);
       clearTimeout(completeTimer);
     };
-  }, [onComplete]);
+  }, [handleComplete]);
 
   return (
     <AnimatePresence>

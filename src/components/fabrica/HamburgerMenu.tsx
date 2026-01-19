@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 
@@ -13,6 +13,27 @@ const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = useCallback(() => setIsOpen(false), []);
+
+  // Handle Escape key to close menu
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && isOpen) {
+        closeMenu();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("keydown", handleKeyDown);
+      // Prevent body scroll when menu is open
+      document.body.style.overflow = "hidden";
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [isOpen, closeMenu]);
 
   return (
     <>
@@ -66,7 +87,10 @@ const HamburgerMenu = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-[55] bg-black/95 backdrop-blur-sm"
-            onClick={() => setIsOpen(false)}
+            onClick={closeMenu}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation menu"
           >
             {/* Menu content */}
             <motion.nav
@@ -77,7 +101,7 @@ const HamburgerMenu = () => {
               className="absolute right-6 md:right-12 lg:right-16 top-1/2 -translate-y-1/2 text-right"
               onClick={(e) => e.stopPropagation()}
             >
-              <ul className="space-y-2">
+              <ul className="space-y-6">
                 {menuItems.map((item, index) => (
                   <motion.li
                     key={item.name}
@@ -88,8 +112,8 @@ const HamburgerMenu = () => {
                   >
                     <Link
                       to={item.href}
-                      onClick={() => setIsOpen(false)}
-                      className="text-white text-xl md:text-2xl font-bold font-body hover:text-white/70 transition-colors duration-200 inline-block"
+                      onClick={closeMenu}
+                      className="text-white text-xl md:text-2xl font-bold font-body hover:text-white/70 transition-colors duration-200 inline-block py-2"
                     >
                       {item.name}
                     </Link>
