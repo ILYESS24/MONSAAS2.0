@@ -15,25 +15,17 @@ interface NavigationProps {
   variant?: "dark" | "light";
 }
 
-// Default button when auth is not configured
+// Default button when auth is not configured - Always dark mode style
 const DefaultAuthButton = ({ 
   isMobile, 
-  variant, 
-  scrolled, 
   onClose 
 }: { 
   isMobile: boolean; 
-  variant: "dark" | "light"; 
-  scrolled: boolean;
   onClose?: () => void;
 }) => {
   const buttonClass = isMobile 
     ? "bg-white text-black px-6 py-3 rounded-full text-base font-medium font-body"
-    : `px-4 py-2 rounded-full text-sm font-medium font-body transition-colors z-50 ${
-        variant === "light" || scrolled
-          ? "bg-black text-white hover:bg-black/80"
-          : "bg-white text-black hover:bg-white/90"
-      }`;
+    : "px-4 py-2 rounded-full text-sm font-medium font-body transition-colors z-50 bg-white text-black hover:bg-white/90";
 
   return (
     <Link to="/dashboard" onClick={onClose}>
@@ -64,8 +56,9 @@ const Navigation = ({ variant = "dark" }: NavigationProps) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const textColor = variant === "light" || scrolled ? "text-black" : "text-white";
-  const bgColor = scrolled ? "bg-white/90 backdrop-blur-lg shadow-sm" : "bg-transparent";
+  // Always use dark mode colors - white text on dark background
+  const textColor = "text-white";
+  const bgColor = scrolled ? "bg-black/90 backdrop-blur-lg shadow-sm" : "bg-transparent";
 
   // Render auth button - always use default when auth not configured
   const renderAuthButton = (isMobile = false) => {
@@ -74,8 +67,6 @@ const Navigation = ({ variant = "dark" }: NavigationProps) => {
     return (
       <DefaultAuthButton 
         isMobile={isMobile} 
-        variant={variant} 
-        scrolled={scrolled} 
         onClose={isMobile ? () => setIsMenuOpen(false) : undefined}
       />
     );
@@ -118,7 +109,7 @@ const Navigation = ({ variant = "dark" }: NavigationProps) => {
                 >
                   {item.name}
                   <motion.span 
-                    className={`absolute -bottom-1 left-0 h-[1px] ${variant === "light" || scrolled ? "bg-black" : "bg-white"}`}
+                    className="absolute -bottom-1 left-0 h-[1px] bg-white"
                     initial={{ width: 0 }}
                     whileHover={{ width: "100%" }}
                     transition={{ duration: 0.3 }}
