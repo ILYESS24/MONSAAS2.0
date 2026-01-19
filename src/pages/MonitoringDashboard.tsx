@@ -864,7 +864,7 @@ function ExpandedIframeModal({ endpoint, onClose }: { endpoint: MonitoredEndpoin
     <div className="fixed inset-0 z-50 bg-black/95 flex flex-col">
       <div className="p-4 flex items-center justify-between border-b border-white/10">
         <div className="flex items-center gap-3">
-          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+          <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
           <h3 className="text-white font-medium">{endpoint.name}</h3>
           <a 
             href={endpoint.url} 
@@ -1120,7 +1120,7 @@ export default function MonitoringDashboard() {
               onClick={() => dispatch({ type: 'TOGGLE_MONITORING' })}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
                 state.isMonitoring
-                  ? 'bg-green-500/10 text-green-400 hover:bg-green-500/20'
+                  ? 'bg-white/10 text-white hover:bg-white/20'
                   : 'bg-red-500/10 text-red-400 hover:bg-red-500/20'
               }`}
             >

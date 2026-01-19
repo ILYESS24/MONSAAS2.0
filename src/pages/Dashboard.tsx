@@ -488,7 +488,7 @@ const DashboardContent = ({ isLoaded, userName, authEnabled }: DashboardContentP
                     <span className="text-xs text-white/60">Mobile App</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-green-500" />
+                    <div className="w-2 h-2 rounded-full bg-white/80" />
                     <span className="text-xs text-white/60">Website</span>
                   </div>
                 </div>
@@ -591,7 +591,7 @@ const DashboardContent = ({ isLoaded, userName, authEnabled }: DashboardContentP
               <div className="mt-6 flex items-end justify-between">
                 <div>
                   <p className="text-5xl font-bold">$0.0K</p>
-                  <p className="text-green-400 text-sm mt-1 flex items-center gap-1">
+                  <p className="text-white text-sm mt-1 flex items-center gap-1">
                     <TrendingUp className="w-4 h-4" />
                     0% Growth
                   </p>
@@ -637,7 +637,7 @@ const DashboardContent = ({ isLoaded, userName, authEnabled }: DashboardContentP
                 <div className="flex items-center gap-2">
                   <h3 className="text-sm font-medium">Live Activity</h3>
                   {liveActivities.length > 0 && (
-                    <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                    <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
                   )}
                 </div>
               </div>
@@ -819,7 +819,7 @@ const DashboardContent = ({ isLoaded, userName, authEnabled }: DashboardContentP
                     <ul className="space-y-2 mb-4">
                       {plan.features.slice(0, 5).map((feature, index) => (
                         <li key={index} className="flex items-start gap-2 text-xs">
-                          <Check className="w-3.5 h-3.5 text-green-400 mt-0.5 flex-shrink-0" />
+                          <Check className="w-3.5 h-3.5 text-white mt-0.5 flex-shrink-0" />
                           <span className="text-white/70">{feature}</span>
                         </li>
                       ))}
