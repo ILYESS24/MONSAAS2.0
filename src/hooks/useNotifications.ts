@@ -4,9 +4,10 @@
  * Provides notification management with support for both local and remote notifications.
  */
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { logger } from '@/lib/logger';
-import type { Notification } from '@/types/supabase';
+// Note: Notification type from supabase is available for future integration
+// import type { Notification } from '@/types/supabase';
 
 // Local notification type (for simulated/local notifications)
 export interface LocalNotification {

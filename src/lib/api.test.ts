@@ -5,8 +5,13 @@
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { api, apiRequest } from '@/lib/api';
-import type { ApiResponse, ApiError } from '@/lib/api';
+import { api, apiRequest, type ApiResponse, type ApiError } from '@/lib/api';
+
+// Suppress unused variable warnings for type imports
+const _apiResponseType: ApiResponse<unknown> | null = null;
+const _apiErrorType: ApiError | null = null;
+void _apiResponseType;
+void _apiErrorType;
 
 describe('API Client', () => {
   let fetchSpy: ReturnType<typeof vi.spyOn>;

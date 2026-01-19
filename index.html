@@ -71,7 +71,12 @@
     <meta name="twitter:image" content="https://aurion.studio/twitter-card.png" />
     <meta name="twitter:image:alt" content="Aurion Studio - Plateforme SaaS" />
     
-    <!-- Security Headers are now configured via Cloudflare Pages -->
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
     
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

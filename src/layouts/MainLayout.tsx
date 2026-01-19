@@ -15,9 +15,11 @@ interface MainLayoutProps {
 
 export function MainLayout({ 
   children, 
-  showNavigation = true, 
-  showFooter = true 
+  showNavigation: _showNavigation = true, 
+  showFooter: _showFooter = true 
 }: MainLayoutProps) {
+  // Navigation and footer props are reserved for future use
+  // when we add header/footer components
   return (
     <div className="min-h-screen bg-black flex flex-col">
       {/* Main Content */}

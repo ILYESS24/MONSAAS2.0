@@ -44,11 +44,12 @@ export function getEnvConfig(): EnvConfig {
 
 // Validate required environment variables
 export function validateEnv(): { isValid: boolean; errors: string[] } {
-  const env = getEnvConfig();
+  const _config = getEnvConfig();
   const errors: string[] = [];
 
   // Clerk authentication is now available in production
   // Users will be prompted to authenticate for personalized dashboards
+  // Config is used for validation checks if needed in the future
 
   return {
     isValid: errors.length === 0,
@@ -73,9 +74,9 @@ export function logEnvInfo(): void {
   const env = getEnvConfig();
   
   if (env.IS_DEVELOPMENT) {
-    console.log('[ENV] Environment:', env.NODE_ENV);
-    console.log('[ENV] Auth configured:', isAuthConfigured());
-    console.log('[ENV] Base URL:', env.BASE_URL);
+    console.info('[ENV] Environment:', env.NODE_ENV);
+    console.info('[ENV] Auth configured:', isAuthConfigured());
+    console.info('[ENV] Base URL:', env.BASE_URL);
   }
 }
 
