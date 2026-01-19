@@ -1,0 +1,53 @@
+# Robots.txt - Aurion Studio
+# https://aurion.studio/robots.txt
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Disallow private/admin areas
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /private/
+
+# Disallow authentication pages from indexing
+Disallow: /sign-in
+Disallow: /sign-up
+
+# Allow important resources
+Allow: /pricing
+Allow: /about
+Allow: /contact
+Allow: /blog
+Allow: /workflows
+Allow: /monitoring
+
+# Sitemap location
+Sitemap: https://aurion.studio/sitemap.xml
+
+# Crawl delay (optional, be respectful)
+Crawl-delay: 1
+
+# Google specific
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /dashboard/
+
+# Bing specific  
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+Disallow: /dashboard/
+
+# SEO crawlers
+User-agent: Screaming Frog SEO Spider
+Allow: /
+
+User-agent: AhrefsBot
+Allow: /
+
+User-agent: SemrushBot
+Allow: /

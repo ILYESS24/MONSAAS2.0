@@ -1,0 +1,18 @@
+# Cloudflare Pages Configuration
+name = "aurion-studio-live"
+pages_build_output_dir = "dist"
+
+# Security headers for SPA
+[[headers]]
+  source = "/**"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Content Security Policy for external services
+[[headers]]
+  source = "/**"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; frame-src https://eed972db.aurion-ide.pages.dev https://production.ai-assistant-xlv.pages.dev https://flo-9xh2.onrender.com https://canvchat-1-y73q.onrender.com https://tersa-main-b5f0ey7pq-launchmateais-projects.vercel.app https://4e2af144.aieditor.pages.dev https://www.google.com; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://eed972db.aurion-ide.pages.dev https://production.ai-assistant-xlv.pages.dev https://flo-9xh2.onrender.com https://canvchat-1-y73q.onrender.com https://tersa-main-b5f0ey7pq-launchmateais-projects.vercel.app https://4e2af144.aieditor.pages.dev; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self';"

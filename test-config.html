@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration Test</title>
+</head>
+<body>
+    <h1>Aurion Studio - Configuration Test</h1>
+    <div id="status"></div>
+
+    <script type="module">
+        const statusDiv = document.getElementById('status');
+
+        // Test des variables d'environnement
+        const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+        const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+        let status = '<h2>Configuration Status:</h2><ul>';
+
+        if (supabaseUrl) {
+            status += `<li>✅ VITE_SUPABASE_URL: ${supabaseUrl}</li>`;
+        } else {
+            status += '<li>❌ VITE_SUPABASE_URL: Missing</li>';
+        }
+
+        if (supabaseKey) {
+            status += '<li>✅ VITE_SUPABASE_ANON_KEY: Configured</li>';
+        } else {
+            status += '<li>❌ VITE_SUPABASE_ANON_KEY: Missing</li>';
+        }
+
+        status += '</ul>';
+
+        // Test de connectivité Supabase
+        if (supabaseUrl && supabaseKey) {
+            status += '<h3>Testing Supabase Connection...</h3>';
+
+            fetch(`${supabaseUrl}/rest/v1/projects?select=id&limit=1`, {
+                headers: {
+                    'apikey': supabaseKey,
+                    'Authorization': `Bearer ${supabaseKey}`
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    status += '<p>✅ Supabase connection: SUCCESS</p>';
+                } else {
+                    status += `<p>❌ Supabase connection: FAILED (${response.status})</p>`;
+                }
+                statusDiv.innerHTML = status;
+            })
+            .catch(error => {
+                status += `<p>❌ Supabase connection: ERROR - ${error.message}</p>`;
+                statusDiv.innerHTML = status;
+            });
+        }
+
+        statusDiv.innerHTML = status;
+    </script>
+</body>
+</html>
