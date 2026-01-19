@@ -30,12 +30,12 @@ export interface ToolConfig {
  * These are the latest deployed versions of each tool
  */
 export const TOOL_URLS = {
-  CODE_EDITOR: 'https://bolt.new',
-  APP_BUILDER: 'https://bolt.new',
-  AGENT_AI: 'https://bolt.new',
-  AURION_CHAT: 'https://bolt.new',
-  TEXT_EDITOR: 'https://bolt.new',
-  INTELLIGENT_CANVAS: 'https://tldraw.com',
+  CODE_EDITOR: 'https://eed972db.aurion-ide.pages.dev',
+  APP_BUILDER: 'https://production.ai-assistant-xlv.pages.dev',
+  AGENT_AI: 'https://flo-9xh2.onrender.com',
+  AURION_CHAT: 'https://canvchat-1-y73q.onrender.com',
+  TEXT_EDITOR: 'https://4e2af144.aieditor.pages.dev',
+  INTELLIGENT_CANVAS: 'https://tersa-main-b5f0ey7pq-launchmateais-projects.vercel.app/canvas/',
 } as const;
 
 /**
@@ -101,6 +101,19 @@ export const TOOLS: ToolConfig[] = [
     description: 'Rich text editor with markdown support, collaboration features, and AI writing assistance',
     url: TOOL_URLS.TEXT_EDITOR,
     icon: 'FileText',
+    type: 'iframe',
+    timeout: 10000,
+    refreshInterval: 60000,
+    enabled: true,
+    version: '2.0.0',
+    alerts: { sound: true },
+  },
+  {
+    id: 'intelligent-canvas',
+    name: 'Intelligent Canvas',
+    description: 'Visual whiteboard and canvas tool for brainstorming, diagrams, and collaborative design',
+    url: TOOL_URLS.INTELLIGENT_CANVAS,
+    icon: 'PenTool',
     type: 'iframe',
     timeout: 10000,
     refreshInterval: 60000,
