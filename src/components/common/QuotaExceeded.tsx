@@ -140,7 +140,7 @@ export const QuotaExceeded: React.FC<QuotaExceededProps> = ({
             En passant à {nextPlanInfo.name}:
           </p>
           
-          <div className="bg-gradient-to-r from-[#D4FF00]/10 to-white/10 border border-[#D4FF00]/30 rounded-xl p-3">
+          <div className="bg-gradient-to-r from-[#D4FF00]/10 to-green-500/10 border border-[#D4FF00]/30 rounded-xl p-3">
             <div className="flex items-center justify-between">
               <span className="text-sm text-white/70">Nouvelle limite</span>
               {(() => {

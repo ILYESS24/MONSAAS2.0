@@ -93,11 +93,11 @@ const NODE_COLORS: Record<NodeType, string> = {
 const StatusBadge: React.FC<{ status: string }> = ({ status }) => {
   const styles: Record<string, string> = {
     draft: 'bg-gray-500/20 text-gray-400',
-    active: 'bg-white/20 text-white',
+    active: 'bg-green-500/20 text-green-400',
     paused: 'bg-yellow-500/20 text-yellow-400',
     error: 'bg-red-500/20 text-red-400',
     archived: 'bg-gray-500/20 text-gray-500',
-    completed: 'bg-white/20 text-white',
+    completed: 'bg-green-500/20 text-green-400',
     running: 'bg-blue-500/20 text-blue-400',
     failed: 'bg-red-500/20 text-red-400',
     pending: 'bg-yellow-500/20 text-yellow-400',
@@ -194,7 +194,7 @@ const WorkflowNodeCard: React.FC<{
             <Loader2 className="w-5 h-5 text-blue-400 animate-spin" />
           )}
           {execution.status === 'completed' && (
-            <CheckCircle className="w-5 h-5 text-white" />
+            <CheckCircle className="w-5 h-5 text-green-400" />
           )}
           {execution.status === 'failed' && (
             <XCircle className="w-5 h-5 text-red-400" />
@@ -303,7 +303,7 @@ const ExecutionRow: React.FC<{
           <Loader2 className="w-4 h-4 text-blue-400 animate-spin" />
         )}
         {execution.status === 'completed' && (
-          <CheckCircle className="w-4 h-4 text-white" />
+          <CheckCircle className="w-4 h-4 text-green-400" />
         )}
         {execution.status === 'failed' && (
           <XCircle className="w-4 h-4 text-red-400" />
@@ -496,7 +496,7 @@ const WorkflowBuilder: React.FC = () => {
           </div>
           <div className="bg-[#1a1a1a] rounded-xl p-4">
             <p className="text-gray-500 text-sm">Active</p>
-            <p className="text-2xl font-bold text-white">{stats.active}</p>
+            <p className="text-2xl font-bold text-green-400">{stats.active}</p>
           </div>
           <div className="bg-[#1a1a1a] rounded-xl p-4">
             <p className="text-gray-500 text-sm">Total Executions</p>
@@ -581,7 +581,7 @@ const WorkflowBuilder: React.FC = () => {
                           className="p-1.5 hover:bg-[#2a2a2a] rounded transition-colors"
                           title="Run workflow"
                         >
-                          <Play className="w-4 h-4 text-white" />
+                          <Play className="w-4 h-4 text-green-400" />
                         </button>
                         <button
                           onClick={(e) => {
@@ -760,7 +760,7 @@ const WorkflowBuilder: React.FC = () => {
             key={notif.id}
             className={`px-4 py-3 rounded-lg flex items-center gap-3 shadow-lg ${
               notif.type === 'success'
-                ? 'bg-white/20 text-white border border-white/30'
+                ? 'bg-green-500/20 text-green-400 border border-green-500/30'
                 : notif.type === 'error'
                 ? 'bg-red-500/20 text-red-400 border border-red-500/30'
                 : notif.type === 'warning'

@@ -9,26 +9,8 @@ import CustomCursor from "./CustomCursor";
 const FabricaLanding = () => {
   return (
     <div className="relative min-h-screen h-screen w-full bg-black overflow-hidden cursor-none md:cursor-none">
-      {/* White Border Frame - Top */}
-      <div className="fixed top-0 left-0 right-0 h-[1px] bg-white/20 z-[100]" />
-      
-      {/* White Border Frame - Bottom */}
-      <div className="fixed bottom-0 left-0 right-0 h-[1px] bg-white/20 z-[100]" />
-      
-      {/* White Border Frame - Left */}
-      <div className="fixed top-0 left-0 bottom-0 w-[1px] bg-white/20 z-[100]" />
-      
-      {/* White Border Frame - Right */}
-      <div className="fixed top-0 right-0 bottom-0 w-[1px] bg-white/20 z-[100]" />
-      
-      {/* Vertical Divider Line - Center-Right for Services */}
-      <div className="hidden lg:block fixed top-0 bottom-0 right-[280px] xl:right-[320px] w-[1px] bg-white/10 z-[90]" />
-      
-      {/* Horizontal Divider Line - Below Navigation */}
-      <div className="fixed top-16 md:top-20 left-0 right-0 h-[1px] bg-white/10 z-[90]" />
-      
-      {/* Horizontal Divider Line - Above Footer */}
-      <div className="fixed bottom-20 md:bottom-24 left-0 right-0 h-[1px] bg-white/10 z-[90]" />
+      {/* Top Border Bar - black */}
+      <div className="fixed top-0 left-0 right-0 h-2 md:h-3 bg-black z-[100]" />
       
       {/* Custom Cursor */}
       <CustomCursor />
@@ -48,14 +30,16 @@ const FabricaLanding = () => {
             <HeroTypography />
           </div>
 
-          {/* Right: Services - with left border on large screens */}
-          <div className="lg:self-start lg:mt-[15%] lg:pl-8 lg:border-l lg:border-white/10">
+          {/* Right: Services */}
+          <div className="lg:self-start lg:mt-[15%]">
             <ServiceList />
           </div>
         </div>
 
+
+
         {/* Bottom Section */}
-        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 lg:gap-16 pt-4 border-t border-white/10">
+        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 lg:gap-16">
           {/* Left: Mission Statement */}
           <div className="order-2 lg:order-1 max-w-md">
             <MissionStatement />
