@@ -8,7 +8,7 @@
  * move their cursor across the screen to reveal the page content.
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IframePage, CursorRevealTransition } from "@/components/common";
 import { getToolById } from "@/config/tools";
 import { SEO } from "@/components/common/SEO";
@@ -16,7 +16,14 @@ import { SEO } from "@/components/common/SEO";
 const tool = getToolById('agent-ai');
 
 const AgentAI = () => {
-  const [showReveal, setShowReveal] = useState(true);
+  // Only show cursor reveal if user clicked from landing page (flag set in sessionStorage)
+  const [showReveal, setShowReveal] = useState(() => {
+    const shouldShow = sessionStorage.getItem('showCursorReveal') === 'true';
+    if (shouldShow) {
+      sessionStorage.removeItem('showCursorReveal'); // Clear flag after reading
+    }
+    return shouldShow;
+  });
   
   return (
     <>

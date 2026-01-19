@@ -16,7 +16,14 @@ import { SEO } from "@/components/common/SEO";
 const tool = getToolById('text-editor');
 
 const TextEditor = () => {
-  const [showReveal, setShowReveal] = useState(true);
+  // Only show cursor reveal if user clicked from landing page (flag set in sessionStorage)
+  const [showReveal, setShowReveal] = useState(() => {
+    const shouldShow = sessionStorage.getItem('showCursorReveal') === 'true';
+    if (shouldShow) {
+      sessionStorage.removeItem('showCursorReveal'); // Clear flag after reading
+    }
+    return shouldShow;
+  });
   
   return (
     <>
