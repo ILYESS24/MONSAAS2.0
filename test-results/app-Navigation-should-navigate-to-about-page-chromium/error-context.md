@@ -1,0 +1,145 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e5]:
+  - link "Retour à l'accueil" [ref=e7] [cursor=pointer]:
+    - /url: /
+    - img [ref=e8]
+    - text: Retour à l'accueil
+  - generic [ref=e10]:
+    - generic [ref=e11]: 🚀 +50 000 développeurs nous font confiance
+    - heading "On construit le futur du développement" [level=1] [ref=e12]
+    - paragraph [ref=e13]:
+      - text: Aurion Studio réunit
+      - strong [ref=e14]: 5 outils essentiels
+      - text: en une seule plateforme, propulsée par l'IA. Fini les 10 abonnements différents. Fini la perte de temps entre les apps.
+  - generic [ref=e15]:
+    - generic [ref=e16]:
+      - generic [ref=e17]: 50K+
+      - generic [ref=e18]: Utilisateurs actifs
+    - generic [ref=e19]:
+      - generic [ref=e20]: 4.9/5
+      - generic [ref=e21]: Note moyenne
+    - generic [ref=e22]:
+      - generic [ref=e23]: 150+
+      - generic [ref=e24]: Pays
+    - generic [ref=e25]:
+      - generic [ref=e26]: 99.9%
+      - generic [ref=e27]: Uptime
+  - generic [ref=e28]:
+    - heading "Pourquoi Aurion existe" [level=2] [ref=e29]
+    - generic [ref=e30]:
+      - paragraph [ref=e31]:
+        - text: ❌
+        - strong [ref=e32]: "Le problème :"
+        - text: En tant que développeurs, on passait 30% de notre temps à jongler entre les outils. Un éditeur ici, un builder là, un assistant IA ailleurs. C'était frustrant et coûteux.
+      - paragraph [ref=e33]:
+        - text: 💡
+        - strong [ref=e34]: "Notre solution :"
+        - text: On a créé la plateforme qu'on aurait aimé avoir. Tous les outils dont un développeur a besoin,
+        - strong [ref=e35]: synchronisés
+        - text: ","
+        - strong [ref=e36]: interconnectés
+        - text: ", et"
+        - strong [ref=e37]: boostés par l'IA
+        - text: .
+      - paragraph [ref=e38]:
+        - text: 🎯
+        - strong [ref=e39]: "Le résultat :"
+        - text: Nos utilisateurs livrent leurs projets
+        - strong [ref=e40]: 2x plus vite
+        - text: tout en réduisant leurs coûts d'outillage de
+        - strong [ref=e41]: 60%
+        - text: .
+  - generic [ref=e42]:
+    - heading "Ce qui nous différencie" [level=2] [ref=e43]
+    - paragraph [ref=e44]: Des valeurs concrètes, pas du marketing creux. Voici ce qui compte vraiment pour nous — et nos utilisateurs.
+    - generic [ref=e45]:
+      - generic [ref=e46]:
+        - generic [ref=e47]:
+          - img [ref=e49]
+          - generic [ref=e53]:
+            - generic [ref=e54]: +15h
+            - generic [ref=e55]: gagnées/semaine
+        - heading "Résultats Mesurables" [level=3] [ref=e56]
+        - paragraph [ref=e57]: Chaque fonctionnalité est conçue pour améliorer vos KPIs. Nos utilisateurs gagnent en moyenne 15h/semaine.
+      - generic [ref=e58]:
+        - generic [ref=e59]:
+          - img [ref=e61]
+          - generic [ref=e63]:
+            - generic [ref=e64]: 48+
+            - generic [ref=e65]: nouvelles fonctionnalités/an
+        - heading "Innovation Continue" [level=3] [ref=e66]
+        - paragraph [ref=e67]: Nouvelles fonctionnalités IA chaque mois. Restez à la pointe sans effort avec nos mises à jour automatiques.
+      - generic [ref=e68]:
+        - generic [ref=e69]:
+          - img [ref=e71]
+          - generic [ref=e73]:
+            - generic [ref=e74]: 99.9%
+            - generic [ref=e75]: uptime garanti
+        - heading "Sécurité Enterprise" [level=3] [ref=e76]
+        - paragraph [ref=e77]: Chiffrement AES-256, conformité RGPD/SOC2, et audit de sécurité continu pour protéger vos données.
+      - generic [ref=e78]:
+        - generic [ref=e79]:
+          - img [ref=e81]
+          - generic [ref=e86]:
+            - generic [ref=e87]: <2h
+            - generic [ref=e88]: temps de réponse
+        - heading "Support Humain" [level=3] [ref=e89]
+        - paragraph [ref=e90]: Une équipe dédiée qui répond en moins de 2h. Pas de bots, que des experts qui comprennent vos enjeux.
+  - generic [ref=e91]:
+    - heading "Notre parcours" [level=2] [ref=e92]
+    - generic [ref=e93]:
+      - generic [ref=e94]:
+        - generic [ref=e95]: "2023"
+        - generic [ref=e96]:
+          - heading "Lancement d'Aurion Studio" [level=4] [ref=e97]
+          - paragraph [ref=e98]: Première version avec 5 outils intégrés
+      - generic [ref=e99]:
+        - generic [ref=e100]: "2024"
+        - generic [ref=e101]:
+          - heading "10 000 utilisateurs" [level=4] [ref=e102]
+          - paragraph [ref=e103]: Croissance 300% en 6 mois
+      - generic [ref=e104]:
+        - generic [ref=e105]: "2025"
+        - generic [ref=e106]:
+          - heading "Série A - 5M€" [level=4] [ref=e107]
+          - paragraph [ref=e108]: Pour accélérer l'innovation IA
+      - generic [ref=e109]:
+        - generic [ref=e110]: "2026"
+        - generic [ref=e111]:
+          - heading "50 000+ utilisateurs" [level=4] [ref=e112]
+          - paragraph [ref=e113]: Leader européen des outils SaaS
+  - generic [ref=e114]:
+    - heading "L'équipe derrière Aurion" [level=2] [ref=e115]
+    - paragraph [ref=e116]: "Des experts passionnés avec un objectif commun : rendre le développement plus simple et plus rapide."
+    - generic [ref=e117]:
+      - generic [ref=e119]:
+        - img "Marie Laurent - CEO & Co-fondatrice chez Aurion Studio" [ref=e121]
+        - heading "Marie Laurent" [level=3] [ref=e122]
+        - paragraph [ref=e123]: CEO & Co-fondatrice
+        - paragraph [ref=e124]: 10+ ans en tech & stratégie produit
+      - generic [ref=e126]:
+        - img "Thomas Dubois - CTO & Co-fondateur chez Aurion Studio" [ref=e128]
+        - heading "Thomas Dubois" [level=3] [ref=e129]
+        - paragraph [ref=e130]: CTO & Co-fondateur
+        - paragraph [ref=e131]: Ex-Google, expert IA & scalabilité
+      - generic [ref=e133]:
+        - img "Sophie Martin - Head of Design chez Aurion Studio" [ref=e135]
+        - heading "Sophie Martin" [level=3] [ref=e136]
+        - paragraph [ref=e137]: Head of Design
+        - paragraph [ref=e138]: Ex-Figma, spécialiste UX/UI
+      - generic [ref=e140]:
+        - img "Lucas Bernard - Lead Engineer chez Aurion Studio" [ref=e142]
+        - heading "Lucas Bernard" [level=3] [ref=e143]
+        - paragraph [ref=e144]: Lead Engineer
+        - paragraph [ref=e145]: Full-stack, architecture cloud
+  - generic [ref=e146]:
+    - heading "Prêt à rejoindre l'aventure ?" [level=2] [ref=e147]
+    - paragraph [ref=e148]: Rejoignez les 50 000+ développeurs qui ont déjà transformé leur façon de travailler. Essai gratuit, sans carte bancaire.
+    - generic [ref=e149]:
+      - link "Commencer Gratuitement →" [ref=e150] [cursor=pointer]:
+        - /url: /sign-up
+      - link "Voir les Tarifs" [ref=e151] [cursor=pointer]:
+        - /url: /contact
+```

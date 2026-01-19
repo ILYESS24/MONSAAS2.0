@@ -1,0 +1,42 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - heading "aurion" [level=1] [ref=e5]
+  - heading "aurion" [level=1] [ref=e7]
+  - navigation "Main navigation" [ref=e9]:
+    - link "aurion® - Home" [ref=e10] [cursor=pointer]:
+      - /url: /
+      - text: aurion®
+    - link "Accéder à mon espace" [ref=e12] [cursor=pointer]:
+      - /url: /dashboard
+      - generic [ref=e13]: Accéder à mon espace
+  - main [ref=e14]:
+    - generic [ref=e15]:
+      - heading "aurion R Studio" [level=1] [ref=e18]:
+        - generic [ref=e19]:
+          - text: aurion
+          - generic [ref=e22]: R
+        - generic [ref=e23]: Studio
+      - generic [ref=e25]:
+        - generic [ref=e27] [cursor=pointer]: Code Editor
+        - generic [ref=e29] [cursor=pointer]: Intelligent Canvas
+        - generic [ref=e31] [cursor=pointer]: Text Editor
+        - generic [ref=e33] [cursor=pointer]: App Builder
+        - generic [ref=e35] [cursor=pointer]: Agent AI
+        - generic [ref=e37] [cursor=pointer]: Aurion Chat
+    - generic [ref=e38]:
+      - paragraph [ref=e41]: No generic websites. No empty marketing promises. Just tools and strategies that help your business grow and your brand shine.
+      - generic [ref=e43]:
+        - link "Confidentialité" [ref=e44] [cursor=pointer]:
+          - /url: /privacy
+        - generic [ref=e45]: "|"
+        - link "Conditions d'utilisation" [ref=e46] [cursor=pointer]:
+          - /url: /terms
+        - generic [ref=e47]: "|"
+        - link "Politique des cookies" [ref=e48] [cursor=pointer]:
+          - /url: /cookies
+        - generic [ref=e49]: "|"
+        - link "Mentions légales" [ref=e50] [cursor=pointer]:
+          - /url: /legal
+```

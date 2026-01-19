@@ -40,6 +40,12 @@ const CursorRevealTransition = ({ children, onRevealComplete }: CursorRevealTran
   // Gooey spring settings - more viscous/liquid feel
   const smoothX = useSpring(mouseX, { damping: 15, stiffness: 80, mass: 0.5 });
   const smoothY = useSpring(mouseY, { damping: 15, stiffness: 80, mass: 0.5 });
+  
+  // Additional springs for viscous ring effects - declared at top level
+  const viscousX1 = useSpring(mouseX, { damping: 10, stiffness: 50, mass: 1 });
+  const viscousY1 = useSpring(mouseY, { damping: 10, stiffness: 50, mass: 1 });
+  const viscousX2 = useSpring(mouseX, { damping: 8, stiffness: 30, mass: 1.5 });
+  const viscousY2 = useSpring(mouseY, { damping: 8, stiffness: 30, mass: 1.5 });
 
   // Reveal radius
   const REVEAL_RADIUS = 150;
@@ -339,8 +345,8 @@ const CursorRevealTransition = ({ children, onRevealComplete }: CursorRevealTran
           <motion.div
             className="fixed z-[54] pointer-events-none border border-white/20 rounded-full"
             style={{
-              x: useSpring(mouseX, { damping: 10, stiffness: 50, mass: 1 }),
-              y: useSpring(mouseY, { damping: 10, stiffness: 50, mass: 1 }),
+              x: viscousX1,
+              y: viscousY1,
               width: REVEAL_RADIUS * 2.2,
               height: REVEAL_RADIUS * 2.2,
               marginLeft: -REVEAL_RADIUS * 1.1,
@@ -352,8 +358,8 @@ const CursorRevealTransition = ({ children, onRevealComplete }: CursorRevealTran
           <motion.div
             className="fixed z-[53] pointer-events-none border border-white/10 rounded-full"
             style={{
-              x: useSpring(mouseX, { damping: 8, stiffness: 30, mass: 1.5 }),
-              y: useSpring(mouseY, { damping: 8, stiffness: 30, mass: 1.5 }),
+              x: viscousX2,
+              y: viscousY2,
               width: REVEAL_RADIUS * 3,
               height: REVEAL_RADIUS * 3,
               marginLeft: -REVEAL_RADIUS * 1.5,

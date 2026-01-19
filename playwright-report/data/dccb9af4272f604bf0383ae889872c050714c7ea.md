@@ -1,0 +1,53 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - navigation "Main navigation" [ref=e5]:
+    - link "aurion® - Home" [ref=e6] [cursor=pointer]:
+      - /url: /
+      - text: aurion®
+    - generic [ref=e7]:
+      - link "Home" [ref=e8] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e9]: Home
+      - link "About" [ref=e10] [cursor=pointer]:
+        - /url: /about
+        - generic [ref=e11]: About
+      - link "Blog" [ref=e12] [cursor=pointer]:
+        - /url: /blog
+        - generic [ref=e13]: Blog
+      - link "Contact" [ref=e14] [cursor=pointer]:
+        - /url: /contact
+        - generic [ref=e15]: Contact
+    - link "Accéder à mon espace" [ref=e17] [cursor=pointer]:
+      - /url: /dashboard
+      - generic [ref=e18]: Accéder à mon espace
+  - main [ref=e19]:
+    - generic [ref=e20]:
+      - heading "aurion R Studio" [level=1] [ref=e23]:
+        - generic [ref=e24]:
+          - text: aurion
+          - generic [ref=e27]: R
+        - generic [ref=e28]: Studio
+      - generic [ref=e30]:
+        - generic [ref=e32] [cursor=pointer]: Code Editor
+        - generic [ref=e34] [cursor=pointer]: Intelligent Canvas
+        - generic [ref=e36] [cursor=pointer]: Text Editor
+        - generic [ref=e38] [cursor=pointer]: App Builder
+        - generic [ref=e40] [cursor=pointer]: Agent AI
+        - generic [ref=e42] [cursor=pointer]: Aurion Chat
+    - generic [ref=e43]:
+      - paragraph [ref=e46]: No generic websites. No empty marketing promises. Just tools and strategies that help your business grow and your brand shine.
+      - generic [ref=e48]:
+        - link "Confidentialité" [ref=e49] [cursor=pointer]:
+          - /url: /privacy
+        - generic [ref=e50]: "|"
+        - link "Conditions d'utilisation" [ref=e51] [cursor=pointer]:
+          - /url: /terms
+        - generic [ref=e52]: "|"
+        - link "Politique des cookies" [ref=e53] [cursor=pointer]:
+          - /url: /cookies
+        - generic [ref=e54]: "|"
+        - link "Mentions légales" [ref=e55] [cursor=pointer]:
+          - /url: /legal
+```
