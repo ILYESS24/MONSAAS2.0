@@ -87,7 +87,7 @@ const navTabs = [
   { id: 'overview', label: 'Overview', icon: LayoutDashboard, route: '/dashboard' },
 ];
 
-// Weekly activity data for bar chart - realistic demo data
+// Weekly activity data for bar chart - sample data (replaced by live data when connected)
 const weeklySalesData = [
   { day: 'Sat', value: 1240 },
   { day: 'Sun', value: 980 },
@@ -98,13 +98,13 @@ const weeklySalesData = [
   { day: 'Fri', value: 3100 },
 ];
 
-// Weekly engagement donut data - realistic demo data
+// Weekly engagement donut data - sample data (replaced by live data when connected)
 const engagementData = [
   { name: 'Mobile App', value: 4200, color: ACCENT_COLOR },
   { name: 'Website', value: 6800, color: '#22C55E' },
 ];
 
-// Monthly trends area chart data - realistic demo data
+// Monthly trends area chart data - sample data (replaced by live data when connected)
 const salesTrendsData = [
   { month: 'Jan', value: 12500 },
   { month: 'Feb', value: 15800 },
@@ -221,8 +221,8 @@ function DashboardWithAuth() {
   );
 }
 
-// Wrapper component for demo mode (no Clerk)
-function DashboardDemo() {
+// Wrapper component for standalone mode (no Clerk authentication)
+function DashboardStandalone() {
   return (
     <DashboardContent 
       isLoaded={true}
@@ -237,7 +237,7 @@ const Dashboard = () => {
   if (isAuthConfigured()) {
     return <DashboardWithAuth />;
   }
-  return <DashboardDemo />;
+  return <DashboardStandalone />;
 };
 
 // The actual dashboard content

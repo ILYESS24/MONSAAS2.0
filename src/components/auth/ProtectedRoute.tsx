@@ -72,13 +72,13 @@ const ProtectedRouteWithAuth: React.FC<ProtectedRouteProps> = ({
   return children ? <>{children}</> : <Outlet />;
 };
 
-// Demo mode component - no auth required
-const ProtectedRouteDemo: React.FC<ProtectedRouteProps> = ({
+// Standalone mode component - no auth required
+const ProtectedRouteStandalone: React.FC<ProtectedRouteProps> = ({
   children
 }) => {
   // In development without auth, allow access with warning
   if (import.meta.env.DEV) {
-    authLogger.warn('Auth not configured - running in demo mode');
+    authLogger.warn('Auth not configured - running in standalone mode');
     return children ? <>{children}</> : <Outlet />;
   }
   // In production without auth, deny access
@@ -90,7 +90,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = (props) => {
   const authConfigured = isAuthConfigured();
   
   if (!authConfigured) {
-    return <ProtectedRouteDemo {...props} />;
+    return <ProtectedRouteStandalone {...props} />;
   }
   
   return <ProtectedRouteWithAuth {...props} />;

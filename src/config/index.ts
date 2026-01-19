@@ -36,7 +36,7 @@ export const FEATURES = {
   PERFORMANCE_MONITORING_ENABLED: import.meta.env.VITE_ENABLE_PERFORMANCE_MONITORING === 'true',
   
   // Application Modes
-  DEMO_MODE_ENABLED: !import.meta.env.VITE_CLERK_PUBLISHABLE_KEY,
+  STANDALONE_MODE_ENABLED: !import.meta.env.VITE_CLERK_PUBLISHABLE_KEY,
   DEBUG_MODE_ENABLED: import.meta.env.DEV || import.meta.env.VITE_DEBUG_MODE === 'true',
   
   // Feature Toggles

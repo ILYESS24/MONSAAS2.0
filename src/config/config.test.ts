@@ -79,9 +79,9 @@ describe('Configuration', () => {
       expect(typeof FEATURES.ERROR_REPORTING_ENABLED).toBe('boolean');
     });
 
-    it('should have DEMO_MODE_ENABLED flag', () => {
-      expect(FEATURES).toHaveProperty('DEMO_MODE_ENABLED');
-      expect(typeof FEATURES.DEMO_MODE_ENABLED).toBe('boolean');
+    it('should have STANDALONE_MODE_ENABLED flag', () => {
+      expect(FEATURES).toHaveProperty('STANDALONE_MODE_ENABLED');
+      expect(typeof FEATURES.STANDALONE_MODE_ENABLED).toBe('boolean');
     });
   });
 

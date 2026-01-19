@@ -65,7 +65,7 @@ function ConfigurationError() {
 }
 
 /**
- * Core providers without auth (for demo mode)
+ * Core providers without auth (for standalone mode)
  */
 function CoreProviders({ children }: { children: ReactNode }) {
   return (
@@ -94,7 +94,7 @@ export function AppProviders({ children }: AppProvidersProps) {
   if (hasClerkKey) {
     logger.info('Running with Clerk authentication - Real user authentication enabled');
   } else {
-    logger.info('Running in demo mode - Authentication disabled');
+    logger.info('Running in standalone mode - Authentication disabled');
   }
 
   return (
