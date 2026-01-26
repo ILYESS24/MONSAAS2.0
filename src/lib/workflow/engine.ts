@@ -6,10 +6,8 @@
 import type {
   Workflow,
   WorkflowNode,
-  WorkflowEdge,
   WorkflowExecution,
   ExecutionStep,
-  ExecutionStatus,
   WorkflowEvent,
   WorkflowEventType,
   WorkflowCondition,
@@ -298,7 +296,7 @@ class LoopNodeExecutor implements NodeExecutor {
   async execute(
     node: WorkflowNode,
     context: ExecutionContext,
-    engine: WorkflowEngine
+    _engine: WorkflowEngine
   ): Promise<unknown> {
     const { loopType, loopSource, loopCondition, loopCount } = node.config;
     const results: unknown[] = [];

@@ -57,7 +57,7 @@ export function AppRouter() {
             {protectedRoutes.map((route, index) => renderRoute(route, index))}
           </Route>
         ) : (
-          /* Demo mode - routes accessible without auth */
+          /* Standalone mode - routes accessible without auth */
           protectedRoutes.map((route, index) => renderRoute(route, index))
         )}
         

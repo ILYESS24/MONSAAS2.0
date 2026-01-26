@@ -8,18 +8,18 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { logger, createLogger, authLogger, securityLogger } from '@/lib/logger';
 
 describe('Logger', () => {
-  let consoleLogSpy: ReturnType<typeof vi.spyOn>;
-  let consoleWarnSpy: ReturnType<typeof vi.spyOn>;
-  let consoleErrorSpy: ReturnType<typeof vi.spyOn>;
-  let consoleDebugSpy: ReturnType<typeof vi.spyOn>;
-  let consoleInfoSpy: ReturnType<typeof vi.spyOn>;
+  let _consoleLogSpy: ReturnType<typeof vi.spyOn>;
+  let _consoleWarnSpy: ReturnType<typeof vi.spyOn>;
+  let _consoleErrorSpy: ReturnType<typeof vi.spyOn>;
+  let _consoleDebugSpy: ReturnType<typeof vi.spyOn>;
+  let _consoleInfoSpy: ReturnType<typeof vi.spyOn>;
 
   beforeEach(() => {
-    consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
-    consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-    consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-    consoleDebugSpy = vi.spyOn(console, 'debug').mockImplementation(() => {});
-    consoleInfoSpy = vi.spyOn(console, 'info').mockImplementation(() => {});
+    _consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+    _consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    _consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    _consoleDebugSpy = vi.spyOn(console, 'debug').mockImplementation(() => {});
+    _consoleInfoSpy = vi.spyOn(console, 'info').mockImplementation(() => {});
   });
 
   afterEach(() => {

@@ -49,24 +49,12 @@ interface ProtectedRouteProps {
   requireAuth?: boolean;
 }
 
-export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
+// Component that uses Clerk auth hooks - only rendered when auth is configured
+const ProtectedRouteWithAuth: React.FC<ProtectedRouteProps> = ({
   children,
   requireAuth = true
 }) => {
   const location = useLocation();
-
-  // If auth is not configured, show demo mode warning or allow access
-  if (!isAuthConfigured()) {
-    // In development without auth, allow access with warning
-    if (import.meta.env.DEV) {
-      authLogger.warn('Auth not configured - running in demo mode');
-      return children ? <>{children}</> : <Outlet />;
-    }
-    // In production without auth, deny access
-    return <UnauthorizedAccess />;
-  }
-
-  // Use Clerk auth hook
   const { isSignedIn, isLoaded } = useAuth();
 
   // Show loading while auth state is being determined
@@ -82,6 +70,30 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
 
   // User is authenticated, render the protected content
   return children ? <>{children}</> : <Outlet />;
+};
+
+// Standalone mode component - no auth required
+const ProtectedRouteStandalone: React.FC<ProtectedRouteProps> = ({
+  children
+}) => {
+  // In development without auth, allow access with warning
+  if (import.meta.env.DEV) {
+    authLogger.warn('Auth not configured - running in standalone mode');
+    return children ? <>{children}</> : <Outlet />;
+  }
+  // In production without auth, deny access
+  return <UnauthorizedAccess />;
+};
+
+export const ProtectedRoute: React.FC<ProtectedRouteProps> = (props) => {
+  // Check auth configuration BEFORE calling any hooks
+  const authConfigured = isAuthConfigured();
+  
+  if (!authConfigured) {
+    return <ProtectedRouteStandalone {...props} />;
+  }
+  
+  return <ProtectedRouteWithAuth {...props} />;
 };
 
 // Higher-order component version for wrapping components

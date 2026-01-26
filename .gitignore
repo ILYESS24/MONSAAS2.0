@@ -33,3 +33,7 @@ core
 .github/
 
 **/tempobook/**
+
+# Test artifacts
+playwright-report/
+test-results/

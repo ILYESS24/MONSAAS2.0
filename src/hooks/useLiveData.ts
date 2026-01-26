@@ -65,7 +65,7 @@ export const formatRelativeTime = (date: Date): string => {
  * Fetches real data from Supabase
  */
 export function useLiveStats(updateInterval = 30000) {
-  // Note: userId filtering removed for demo mode compatibility
+  // Note: userId filtering removed for standalone mode compatibility
   // In production with Clerk, you would use the userId from useAuth()
   const [stats, setStats] = useState<LiveStats>({
     totalProjects: 0,
@@ -121,7 +121,7 @@ export function useLiveStats(updateInterval = 30000) {
 
         if (totalError) throw totalError;
 
-        // For demo, assume 20% of tasks are completed
+        // Estimate 20% of tasks are completed when status column is not available
         completedTasks = Math.floor((totalTasksCheck ?? 0) * 0.2);
         logger.debug('Using estimated completion rate for tasks count');
       } catch (_err) {
@@ -380,6 +380,7 @@ export function useToolStatus() {
       isMounted.current = false;
       clearInterval(interval);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkToolStatus]);
 
   return tools;
@@ -509,7 +510,7 @@ export function useTasksDueToday() {
 
         if (fetchError) throw fetchError;
 
-        // For demo purposes, estimate that about 10% of tasks are due today
+        // Estimate that about 10% of tasks are due today when due_date column is not available
         const estimatedDueToday = Math.floor((totalTasks ?? 0) * 0.1);
 
         setTasksCount(estimatedDueToday);

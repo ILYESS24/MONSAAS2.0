@@ -24,6 +24,9 @@ export const ALLOWED_IFRAME_ORIGINS = [
   'https://tersa-main-b5f0ey7pq-launchmateais-projects.vercel.app',
   'https://4e2af144.aieditor.pages.dev',
   'https://www.google.com',
+  'https://bolt.new',
+  'https://tldraw.com',
+  'https://www.tldraw.com',
 ] as const;
 
 // Get environment configuration
@@ -41,11 +44,11 @@ export function getEnvConfig(): EnvConfig {
 
 // Validate required environment variables
 export function validateEnv(): { isValid: boolean; errors: string[] } {
-  const env = getEnvConfig();
   const errors: string[] = [];
 
   // Clerk authentication is now available in production
   // Users will be prompted to authenticate for personalized dashboards
+  // Additional validation checks can be added here as needed
 
   return {
     isValid: errors.length === 0,
@@ -70,9 +73,9 @@ export function logEnvInfo(): void {
   const env = getEnvConfig();
   
   if (env.IS_DEVELOPMENT) {
-    console.log('[ENV] Environment:', env.NODE_ENV);
-    console.log('[ENV] Auth configured:', isAuthConfigured());
-    console.log('[ENV] Base URL:', env.BASE_URL);
+    console.info('[ENV] Environment:', env.NODE_ENV);
+    console.info('[ENV] Auth configured:', isAuthConfigured());
+    console.info('[ENV] Base URL:', env.BASE_URL);
   }
 }
 

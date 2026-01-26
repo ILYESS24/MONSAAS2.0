@@ -1,7 +1,5 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { useAuth, SignInButton, UserButton } from "@clerk/clerk-react";
-import { isAuthConfigured } from "@/lib/env";
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -11,14 +9,6 @@ const navItems = [
 ];
 
 const Navigation = () => {
-  // Get auth state with proper handling
-  const authConfigured = isAuthConfigured();
-
-  // Only use Clerk hooks when auth is configured
-  const clerkAuth = authConfigured ? useAuth() : null;
-  const isSignedIn = clerkAuth?.isSignedIn ?? false;
-  const isLoaded = clerkAuth?.isLoaded ?? true;
-
   return (
     <motion.nav
       initial={{ opacity: 0, y: -20 }}
@@ -58,48 +48,15 @@ const Navigation = () => {
 
       {/* CTA Button */}
       <div className="flex items-center gap-4">
-        {isLoaded ? (
-          isSignedIn ? (
-            <>
-              <Link to="/dashboard">
-                <motion.span
-                  className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium font-body hover:bg-white/90 transition-colors z-50 inline-block"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Mon tableau de bord
-                </motion.span>
-              </Link>
-              <UserButton
-                appearance={{
-                  elements: {
-                    avatarBox: "w-9 h-9 ring-2 ring-white/20",
-                  }
-                }}
-              />
-            </>
-          ) : (
-            <SignInButton mode="modal">
-              <motion.button
-                className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium font-body hover:bg-white/90 transition-colors z-50"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Accéder à mon espace
-              </motion.button>
-            </SignInButton>
-          )
-        ) : (
-          <Link to="/dashboard">
-            <motion.span
-              className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium font-body hover:bg-white/90 transition-colors z-50 inline-block"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Accéder à mon espace
-            </motion.span>
-          </Link>
-        )}
+        <Link to="/dashboard">
+          <motion.span
+            className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium font-body hover:bg-white/90 transition-colors z-50 inline-block"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Accéder à mon espace
+          </motion.span>
+        </Link>
       </div>
     </motion.nav>
   );

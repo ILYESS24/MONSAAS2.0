@@ -66,36 +66,36 @@ export const IframePage: React.FC<IframePageProps> = ({
 
   return (
     <div className="min-h-screen bg-black">
-      {/* Header with back button */}
+      {/* Floating header with glassmorphism effect */}
       <motion.header
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="relative z-10 flex items-center justify-between p-4 md:p-6 border-b border-white/10"
+        className="fixed top-4 left-4 right-4 z-50 flex items-center justify-between px-4 py-3 rounded-2xl bg-black/40 backdrop-blur-xl border border-white/10"
       >
         <div className="flex items-center gap-4">
           <button
             onClick={() => navigate('/dashboard')}
-            className="text-white/60 hover:text-white transition-colors flex items-center gap-2 text-sm"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-all text-sm"
             aria-label="Back to Dashboard"
           >
-            <ArrowLeft className="w-4 h-4 md:w-5 md:h-5" />
+            <ArrowLeft className="w-4 h-4" />
             <span className="hidden sm:inline">Dashboard</span>
           </button>
         </div>
 
         <div className="text-white font-body text-center flex items-center gap-2">
-          <span className="text-white text-base md:text-lg font-medium">{title}</span>
-          <span className="text-white/60 ml-2 text-sm hidden sm:inline">{brandName}</span>
+          <span className="text-white/90 text-sm md:text-base font-medium">{title}</span>
+          <span className="text-white/40 ml-1 text-xs hidden sm:inline">{brandName}</span>
         </div>
 
         {/* Usage indicator and plan badge */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           {/* Usage indicator for tools with quotas */}
           {toolUsage && toolUsage.max !== Infinity && (
-            <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-lg">
+            <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-white/5 rounded-xl">
               <div className="flex-1">
-                <div className="h-1.5 w-16 bg-white/20 rounded-full overflow-hidden">
+                <div className="h-1 w-12 bg-white/10 rounded-full overflow-hidden">
                   <div 
                     className={`h-full rounded-full transition-all ${
                       toolUsage.percentage >= 80 ? 'bg-red-500' : 
@@ -105,17 +105,17 @@ export const IframePage: React.FC<IframePageProps> = ({
                   />
                 </div>
               </div>
-              <span className="text-xs text-white/60">{toolUsage.formatted}</span>
+              <span className="text-xs text-white/50">{toolUsage.formatted}</span>
             </div>
           )}
           
           {/* Plan badge */}
           <Link 
             to="/contact"
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-lg transition-colors text-xs"
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-white/5 hover:bg-white/10 rounded-xl transition-colors text-xs"
           >
-            <Crown className="w-3.5 h-3.5 text-[#D4FF00]" />
-            <span className="text-white/70">{SUBSCRIPTION_PLANS[currentPlan].name}</span>
+            <Crown className="w-3 h-3 text-[#D4FF00]" />
+            <span className="text-white/60 hidden sm:inline">{SUBSCRIPTION_PLANS[currentPlan].name}</span>
           </Link>
         </div>
       </motion.header>
@@ -125,7 +125,7 @@ export const IframePage: React.FC<IframePageProps> = ({
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-amber-500/20 border-b border-amber-500/30 px-4 py-2"
+          className="fixed top-20 left-4 right-4 z-40 bg-amber-500/20 backdrop-blur-xl border border-amber-500/30 px-4 py-2 rounded-xl"
         >
           <div className="flex items-center justify-center gap-2 text-sm text-amber-400">
             <AlertCircle className="w-4 h-4" />
@@ -139,15 +139,12 @@ export const IframePage: React.FC<IframePageProps> = ({
         </motion.div>
       )}
 
-      {/* Secure iframe container */}
+      {/* Secure iframe container - full height */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className={`${toolUsage && toolUsage.percentage >= 80 && toolUsage.max !== Infinity 
-          ? 'h-[calc(100vh-105px)] md:h-[calc(100vh-121px)]' 
-          : 'h-[calc(100vh-65px)] md:h-[calc(100vh-81px)]'
-        }`}
+        className="h-screen w-full"
       >
         <SecureIframe
           src={src}

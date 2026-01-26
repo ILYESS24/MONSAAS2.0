@@ -14,6 +14,9 @@ const ServiceList = () => {
   const navigate = useNavigate();
 
   const handleServiceClick = (service: string) => {
+    // Set flag to trigger cursor reveal animation on tool page
+    sessionStorage.setItem('showCursorReveal', 'true');
+    
     if (service === "Code Editor") {
       navigate('/code-editor');
     } else if (service === "Intelligent Canvas") {

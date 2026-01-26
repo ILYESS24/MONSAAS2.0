@@ -141,6 +141,7 @@ export function useSubscription() {
       formatted: `${formatStorage(store.usage.storageUsedMB)}/${formatStorage(limits.maxStorageMB)}`,
       percentage: store.getUsagePercentage('storage'),
     },
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }), [store.usage, limits, store.getUsagePercentage]);
   
   /**

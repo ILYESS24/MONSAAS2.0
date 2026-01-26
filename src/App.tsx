@@ -34,7 +34,7 @@ function App() {
         analytics: FEATURES.ANALYTICS_ENABLED,
         errorReporting: FEATURES.ERROR_REPORTING_ENABLED,
         performanceMonitoring: FEATURES.PERFORMANCE_MONITORING_ENABLED,
-        demoMode: FEATURES.DEMO_MODE_ENABLED,
+        standaloneMode: FEATURES.STANDALONE_MODE_ENABLED,
       },
     });
   }, []);

@@ -8,7 +8,7 @@ import { describe, it, expect, vi, beforeAll, afterAll } from 'vitest';
 import { render, screen } from '@/test/utils';
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
 
-// Clerk mocks removed - using demo mode without authentication
+// Clerk mocks removed - using standalone mode without authentication
 
 describe('Component Tests', () => {
   // ===========================================================================

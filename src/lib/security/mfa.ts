@@ -77,8 +77,9 @@ function bufferToHex(buffer: ArrayBuffer): string {
 
 /**
  * Convert hex string to Uint8Array
+ * @internal Reserved for future use in MFA verification flows
  */
-function hexToBuffer(hex: string): Uint8Array {
+function _hexToBuffer(hex: string): Uint8Array {
   const result = new Uint8Array(hex.length / 2);
   for (let i = 0; i < hex.length; i += 2) {
     result[i / 2] = parseInt(hex.substring(i, i + 2), 16);
